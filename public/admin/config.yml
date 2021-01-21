@@ -1,5 +1,5 @@
 backend: 
-  name: git-dateway
+  name: git-gateway
   branch: master
 media_folder: "public/images"
 collections:
