@@ -7,21 +7,40 @@ const Header = styled.nav`
   justify-content: flex-end;
   padding: 20px 0;
   margin-bottom: 50px;
+  @media (max-width: 800px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const NavLink = styled.a`
   text-decoration: none;
   color: ${(props) => props.theme.colors.text};
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 700;
   padding: 5px 10px;
   border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   cursor: pointer;
+  padding-bottom: 10px;
+  position: relative;
   &:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 40px;
   }
-  &:hover {
-    background-color: rgba(255, 208, 0, 0.4);
+  &::after {
+    position: absolute;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    background: ${(props) => props.theme.colors.link};
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  &:hover::after {
+    width: 100%;
+    left: 0;
   }
 `;
 

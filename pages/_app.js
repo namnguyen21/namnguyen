@@ -3,9 +3,10 @@ import { ThemeProvider } from "styled-components";
 
 const THEME = {
   colors: {
-    paper: "#001118",
+    paper: "#0b1221",
     link: "#e8e046",
     text: "#FFFFFF",
+    textSecondary: "#86a1b5",
   },
 };
 

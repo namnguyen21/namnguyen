@@ -3,6 +3,14 @@ import path from "path";
 import matter from "gray-matter";
 import Head from "next/head";
 import marked from "marked";
+import styled from "styled-components";
+
+import Layout from "../../components/Layout";
+import Section from "../../components/Section";
+
+const Content = styled.div`
+  color: ${(props) => props.theme.colors.text};
+`;
 
 export default function Post({ htmlString, data }) {
   return (
@@ -11,7 +19,13 @@ export default function Post({ htmlString, data }) {
         <title>{data.title}</title>
         <meta title="description" content={data.description} />
       </Head>
-      <div dangerouslySetInnerHTML={{ __html: htmlString }}></div>
+      <Layout>
+        <Section>
+          <Content>
+            <div dangerouslySetInnerHTML={{ __html: htmlString }}></div>
+          </Content>
+        </Section>
+      </Layout>
     </>
   );
 }

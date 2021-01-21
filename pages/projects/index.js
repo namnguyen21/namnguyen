@@ -15,6 +15,9 @@ export default function index({ projects }) {
               description={proj.description}
               tools={proj.tools}
               imgSrc={proj.image}
+              deployed={proj.deployed}
+              github={proj.github}
+              youtube={proj.youtube}
             />
           ))}
         </Section>

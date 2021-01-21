@@ -8,7 +8,10 @@
             "Redux",
             "Express.js",
             "MySQL"
-        ]
+        ],
+        "deployed": "https://snapmenu.us",
+        "github": "https://github.com/namnguyen21/qr-menu",
+        "youtube": "https://youtu.be/6e7ne5X9fes"
     },
     {
         "title": "Projectify",
@@ -19,7 +22,10 @@
             "Redux",
             "MongoDB",
             "Socket.io"
-        ]
+        ],
+        "deployed": "https://projectify-test.herokuapp.com/",
+        "github": "https://github.com/namnguyen21/projectify-updated",
+        "youtube": "https://www.youtube.com/watch?v=DsHuuDnm4Z4"
     },
     {
         "title": "Daily Dose",
@@ -27,9 +33,12 @@
         "image": "/images/dailydose.png",
         "tools": [
             "React",
-            "Express.js",
+            "Express",
             "MongoDB",
-            "BeautifulSoup"
-        ]
+            "Python"
+        ],
+        "deployed": "https://pacific-temple-25329.herokuapp.com/",
+        "github": "https://github.com/namnguyen21/daily-dose",
+        "youtube": "https://www.youtube.com/watch?v=AYH8XHADRI4"
     }
 ]

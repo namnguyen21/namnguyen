@@ -5,6 +5,10 @@ const Container = styled.section`
   flex-direction: column;
 `;
 
-export default function Section({ children, style }) {
-  return <Container style={style}>{children}</Container>;
+export default function Section({ children, style, className }) {
+  return (
+    <Container className={className} style={style}>
+      {children}
+    </Container>
+  );
 }
