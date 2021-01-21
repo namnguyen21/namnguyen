@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
@@ -62,6 +63,18 @@ const A = styled.a`
 `;
 
 export default function Home() {
+  useEffect(() => {
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", (user) => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  });
+
   return (
     <>
       <Head>
@@ -72,7 +85,10 @@ export default function Home() {
         <HeroSection>
           <Card>
             <ImageContainer>
-              <StyledImage src="https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266338/avatar_h0lnov.png" layout="fill" />
+              <StyledImage
+                src="https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266338/avatar_h0lnov.png"
+                layout="fill"
+              />
             </ImageContainer>
             <Content>
               <Intro>Hi there, I'm Nam.</Intro>

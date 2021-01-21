@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Head from "next/head";
 import Nav from "./Nav";
 
 const Container = styled.div`
@@ -14,9 +15,14 @@ const Container = styled.div`
 
 export default function Layout({ children }) {
   return (
-    <Container>
-      <Nav />
-      {children}
-    </Container>
+    <>
+      <Head>
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      </Head>
+      <Container>
+        <Nav />
+        {children}
+      </Container>
+    </>
   );
 }
