@@ -72,7 +72,7 @@ export default function Home() {
         <HeroSection>
           <Card>
             <ImageContainer>
-              <StyledImage src="/images/avatar.png" layout="fill" />
+              <StyledImage src="https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266338/avatar_h0lnov.png" layout="fill" />
             </ImageContainer>
             <Content>
               <Intro>Hi there, I'm Nam.</Intro>

@@ -1,44 +1,44 @@
 [
-    {
-        "title": "Snap Menu",
-        "description": "Restaurants can upload their menus through a user portal and obtain a QR code for customers to view their new, digitial menus.",
-        "image": "/images/snapmenu.png",
-        "tools": [
-            "React",
-            "Redux",
-            "Express.js",
-            "MySQL"
-        ],
-        "deployed": "https://snapmenu.us",
-        "github": "https://github.com/namnguyen21/qr-menu",
-        "youtube": "https://youtu.be/6e7ne5X9fes"
-    },
-    {
-        "title": "Projectify",
-        "description": "A project and task manager, which uses web sockets to create real time changes and chat with group members.",
-        "image": "/images/projectify.png",
-        "tools": [
-            "React",
-            "Redux",
-            "MongoDB",
-            "Socket.io"
-        ],
-        "deployed": "https://projectify-test.herokuapp.com/",
-        "github": "https://github.com/namnguyen21/projectify-updated",
-        "youtube": "https://www.youtube.com/watch?v=DsHuuDnm4Z4"
-    },
-    {
-        "title": "Daily Dose",
-        "description": "A content aggregator for news and media sources. Utilizes web scraping to gather articles and posts.",
-        "image": "/images/dailydose.png",
-        "tools": [
-            "React",
-            "Express",
-            "MongoDB",
-            "Python"
-        ],
-        "deployed": "https://pacific-temple-25329.herokuapp.com/",
-        "github": "https://github.com/namnguyen21/daily-dose",
-        "youtube": "https://www.youtube.com/watch?v=AYH8XHADRI4"
-    }
+  {
+    "title": "Snap Menu",
+    "description": "Restaurants can upload their menus through a user portal and obtain a QR code for customers to view their new, digitial menus.",
+    "image": "https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266337/snapmenu_x0yjay.png",
+    "tools": [
+      "React",
+      "Redux",
+      "Express.js",
+      "MySQL"
+    ],
+    "deployed": "https://snapmenu.us",
+    "github": "https://github.com/namnguyen21/qr-menu",
+    "youtube": "https://youtu.be/6e7ne5X9fes"
+  },
+  {
+    "title": "Projectify",
+    "description": "A project and task manager, which uses web sockets to create real time changes and chat with group members.",
+    "image": "https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266337/projectify_ndd5dj.png",
+    "tools": [
+      "React",
+      "Redux",
+      "MongoDB",
+      "Socket.io"
+    ],
+    "deployed": "https://projectify-test.herokuapp.com/",
+    "github": "https://github.com/namnguyen21/projectify-updated",
+    "youtube": "https://www.youtube.com/watch?v=DsHuuDnm4Z4"
+  },
+  {
+    "title": "Daily Dose",
+    "description": "A content aggregator for news and media sources. Utilizes web scraping to gather articles and posts.",
+    "image": "https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266337/dailydose_yr4d7n.png",
+    "tools": [
+      "React",
+      "Express",
+      "MongoDB",
+      "Python"
+    ],
+    "deployed": "https://pacific-temple-25329.herokuapp.com/",
+    "github": "https://github.com/namnguyen21/daily-dose",
+    "youtube": "https://www.youtube.com/watch?v=AYH8XHADRI4"
+  }
 ]
