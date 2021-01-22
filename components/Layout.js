@@ -15,14 +15,9 @@ const Container = styled.div`
 
 export default function Layout({ children }) {
   return (
-    <>
-      <Head>
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-      </Head>
-      <Container>
-        <Nav />
-        {children}
-      </Container>
-    </>
+    <Container>
+      <Nav />
+      {children}
+    </Container>
   );
 }
