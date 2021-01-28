@@ -10,13 +10,14 @@
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
     "gray-matter": "^4.0.2",
-    "lazy-load": "0.0.2",
     "lottie-web": "^5.7.6",
     "marked": "^1.2.7",
     "next": "10.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.1.0",
+    "react-lazyload": "^3.1.0",
+    "resolve-url-loader": "^3.1.2",
     "styled-components": "^5.2.1"
   },
   "babel": {

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
@@ -31,16 +30,12 @@ const Card = styled.div`
   padding: 0 20px 20px 20px;
 `;
 
-const ImageContainer = styled.div`
+const StyledImage = styled.img`
+  border-radius: 50%;
   height: 200px;
   width: 200px;
   border-radius: 50%;
-  position: relative;
-  margin: -175px auto 20px auto;
-`;
-
-const StyledImage = styled(Image)`
-  border-radius: 50%;
+  margin: -185px auto 20px auto;
 `;
 
 const Content = styled.div`
@@ -71,12 +66,7 @@ export default function Home() {
       <Layout>
         <HeroSection>
           <Card>
-            <ImageContainer>
-              <StyledImage
-                src="https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266338/avatar_h0lnov.png"
-                layout="fill"
-              />
-            </ImageContainer>
+            <StyledImage src="./images/avatar.png" />
             <Content>
               <Intro>Hi there, I'm Nam.</Intro>
               <div>

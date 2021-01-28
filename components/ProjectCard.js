@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Image from "next/image";
+import LazyLoad from "react-lazyload";
 import { FiExternalLink, FiGithub, FiYoutube } from "react-icons/fi";
 
 const Card = styled.div`
@@ -64,20 +64,14 @@ const Tag = styled.div`
   border-radius: 5px;
 `;
 
-const ImageContainer = styled.div`
+const StyledImage = styled.img`
+  border-radius: 10px;
   width: 400px;
-  height: 300px;
-  display: block;
-  position: relative;
   @media screen and (max-width: 800px) {
     width: 100%;
 
     margin-bottom: 50px;
   }
-`;
-
-const StyledImage = styled(Image)`
-  border-radius: 10px;
 `;
 
 const DescriptionContainer = styled.div`
@@ -119,7 +113,7 @@ const ButtonGroup = styled.div`
     margin-right: 20px;
   }
   @media (max-width: 800px) {
-      justify-content: flex-end;
+    justify-content: flex-end;
   }
 `;
 
@@ -135,9 +129,9 @@ export default function ProjectCard({
   return (
     <Card>
       <A style={{ width: "100%" }} href={deployed && deployed} target="_blank">
-        <ImageContainer>
-          <StyledImage layout="fill" src={imgSrc} alt={title} />
-        </ImageContainer>
+        <LazyLoad>
+          <StyledImage src={imgSrc} alt={title} />
+        </LazyLoad>
       </A>
       <DescriptionContainer>
         <A href={deployed && deployed} target="_blank">

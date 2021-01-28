@@ -2,7 +2,7 @@
   {
     "title": "Snap Menu",
     "description": "Restaurants can upload their menus through a user portal and obtain a QR code for customers to view their new, digitial menus.",
-    "image": "https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266337/snapmenu_x0yjay.png",
+    "image": "./images/snapmenu.png",
     "tools": [
       "React",
       "Redux",
@@ -16,7 +16,7 @@
   {
     "title": "Projectify",
     "description": "A project and task manager, which uses web sockets to create real time changes and chat with group members.",
-    "image": "https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266337/projectify_ndd5dj.png",
+    "image": "./images/projectify.png",
     "tools": [
       "React",
       "Redux",
@@ -30,7 +30,7 @@
   {
     "title": "Daily Dose",
     "description": "A content aggregator for news and media sources. Utilizes web scraping to gather articles and posts.",
-    "image": "https://res.cloudinary.com/djuq5cwgy/image/upload/v1611266337/dailydose_yr4d7n.png",
+    "image": "./images/dailydose.png",
     "tools": [
       "React",
       "Express",
