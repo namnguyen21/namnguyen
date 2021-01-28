@@ -6,7 +6,7 @@ const Header = styled.nav`
   display: flex;
   justify-content: flex-end;
   padding: 20px 0;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   @media (max-width: 800px) {
     margin-bottom: 10px;
   }

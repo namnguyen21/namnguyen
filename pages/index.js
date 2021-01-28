@@ -3,31 +3,35 @@ import styled from "styled-components";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import Link from "next/link";
+import fs from "fs";
+import LazyLoad from "react-lazyload";
 
 const Intro = styled.h1`
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 900;
-  color: ${(props) => props.theme.colors.paper};
+  color: ${(props) => props.theme.colors.text};
   max-width: 300px;
   line-height: 1;
+  width: 100%;
+  text-align: center;
+  @media (max-width: 800px) {
+    font-size: 60px;
+  }
 `;
+
+// const StyledLayout = styled(Layout)`
+//   width: 1000px;
+//   @media (max-width: 800px) {
+//     width: 100%;
+//     padding: 0 20px;
+//   }
+// `;
 
 const HeroSection = styled(Section)`
-  align-items: center;
-`;
-
-const Card = styled.div`
-  width: 600px;
-  /* background-color: ${(props) => props.theme.colors.text}; */
-  background-color: rgba(255, 255, 255, 0.8);
-  color: ${(props) => props.theme.colors.paper};
-  border-radius: 20px;
-  margin-top: 175px;
-
-  @media (max-width: 800px) {
-    width: 100%;
+  @media (min-width: 800px) {
+    flex-direction: row;
+    align-items: center;
   }
-  padding: 0 20px 20px 20px;
 `;
 
 const StyledImage = styled.img`
@@ -35,28 +39,91 @@ const StyledImage = styled.img`
   height: 200px;
   width: 200px;
   border-radius: 50%;
-  margin: -185px auto 20px auto;
 `;
 
-const Content = styled.div`
+const AboutSection = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-`;
-
-const Description = styled.p`
-  font-size: 18px;
+  justify-content: center;
   max-width: 250px;
-  &:not(:last-child) {
-    margin-bottom: 20px;
+  @media (max-width: 800px) {
+    margin-bottom: 100px;
+    max-width: 100%;
+  }
+
+  > *:not(:last-child) {
+    margin-bottom: 10px;
   }
 `;
 
-const A = styled.a`
-  color: #5489b0;
-  cursor: pointer;
+const Content = styled.div`
+  @media (min-width: 800px) {
+    margin-left: 100px;
+  }
 `;
 
-export default function Home() {
+const Flex = styled.div`
+  display: flex;
+`;
+
+const ContentSection = styled(Flex)`
+  @media (min-width: 800px) {
+    justify-content: space-between;
+  }
+  flex-direction: column;
+`;
+
+const ContentBlockHeader = styled.h3`
+  font-size: 25px;
+  color: ${(props) => props.theme.colors.text};
+  font-weight: 700;
+  margin-right: 20px;
+    margin-bottom: 15px;
+`;
+
+const ContentBlockTitle = styled.h3`
+  font-size: 25px;
+  color: ${(props) => props.theme.colors.link};
+  font-weight: 700;
+  margin-bottom: 10px;
+`;
+
+const Img = styled.img`
+  width: 200px;
+  border-radius: 10px;
+  margin-right: 20px;
+`;
+
+const Card = styled(Flex)`
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  align-items: center;
+  max-width: 450px;
+  margin-bottom: 15px;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
+`;
+
+const P = styled.p`
+  color: ${(props) => props.theme.colors.text};
+  font-size: 16px;
+`;
+
+const ALink = styled.a`
+  font-size: 16px;
+  color: ${(props) => props.theme.colors.textSecondary};
+  display: block;
+  cursor: pointer;
+  &:hover {
+    color: ${(props) => props.theme.colors.link};
+  }
+  text-align: right;
+`;
+
+export default function Home({ latestProj }) {
   return (
     <>
       <Head>
@@ -65,30 +132,50 @@ export default function Home() {
       </Head>
       <Layout>
         <HeroSection>
-          <Card>
-            <StyledImage src="./images/avatar.png" />
-            <Content>
-              <Intro>Hi there, I'm Nam.</Intro>
+          <AboutSection>
+            <StyledImage src="./images/avatar.png" alt="Avatar" />
+            <Intro>Hi there, I'm Nam.</Intro>
+            <P style={{ textAlign: "center" }}>
+              I'm a full stack developer, who utilizes the JavaScript ecosystem
+              to create beautiful applications.
+            </P>
+          </AboutSection>
+          <Content>
+            <ContentSection>
+              <ContentBlockHeader>Latest Work:</ContentBlockHeader>
               <div>
-                <Description>
-                  I'm a full stack developer who loves working in the JavaScript
-                  ecosystem using tools like React, Redux, and Express.
-                </Description>
-                <Description>
-                  While you're here, you can{" "}
-                  <Link href="/blog">
-                    <A>check out my blog</A>
-                  </Link>{" "}
-                  and{" "}
-                  <Link href="/projects">
-                    <A>see what I've been working on.</A>
-                  </Link>
-                </Description>
+                <a
+                  href={latestProj.deployed}
+                  alt={`Visit ${latestProj.title}`}
+                  target="_blank"
+                >
+                  <Card>
+                    <Img src={latestProj.image} alt={latestProj.title} />
+                    <div>
+                      <ContentBlockTitle>{latestProj.title}</ContentBlockTitle>
+                      <P>{latestProj.description}</P>
+                    </div>
+                  </Card>
+                </a>
+                <Link href="/projects">
+                  <ALink>{">"} View all projects</ALink>
+                </Link>
               </div>
-            </Content>
-          </Card>
+            </ContentSection>
+          </Content>
         </HeroSection>
       </Layout>
     </>
   );
 }
+
+export const getStaticProps = () => {
+  const projects = fs.readFileSync("projects/projects.json");
+  const latestProj = JSON.parse(projects)[0];
+
+  return {
+    props: {
+      latestProj,
+    },
+  };
+};

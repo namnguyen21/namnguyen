@@ -53,8 +53,8 @@ export default function index({ slugs }) {
     <Layout>
       <Section>
         {slugs.length > 0 ? (
-          slugs.map((slug) => (
-            <Link href={`/blog/${slug}`} passHref>
+          slugs.map((slug, i) => (
+            <Link key={i} href={`/blog/${slug}`} passHref>
               <A className="myLink">{slug}</A>
             </Link>
           ))

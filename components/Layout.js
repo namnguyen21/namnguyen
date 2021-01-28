@@ -6,15 +6,15 @@ const Container = styled.div`
   margin: auto;
   @media (max-width: 800px) {
     width: 100%;
-    padding: 0 10px;
+    padding: 0 20px;
   }
-  padding-bottom: 200px;
+  padding-bottom: 100px;
   color: ${(props) => props.theme.colors.text};
 `;
 
-export default function Layout({ children }) {
+export default function Layout({ children, className }) {
   return (
-    <Container>
+    <Container className={className}>
       <Nav />
       {children}
     </Container>
