@@ -10,6 +10,7 @@
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
     "gray-matter": "^4.0.2",
+    "lazy-load": "0.0.2",
     "lottie-web": "^5.7.6",
     "marked": "^1.2.7",
     "next": "10.0.5",
