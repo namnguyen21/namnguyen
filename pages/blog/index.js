@@ -3,9 +3,12 @@ import Link from "next/link";
 import styled from "styled-components";
 import lottie from "lottie-web";
 import { useEffect, useRef } from "react";
+import path from "path";
+import matter from "gray-matter";
 
 import Layout from "../../components/Layout";
 import Section from "../../components/Section";
+import BlogPreview from "../../components/BlogPreview";
 
 const A = styled.a`
   color: ${(props) => props.theme.colors.link};
@@ -54,8 +57,14 @@ export default function index({ slugs }) {
       <Section>
         {slugs.length > 0 ? (
           slugs.map((slug, i) => (
-            <Link key={i} href={`/blog/${slug}`} passHref>
-              <A className="myLink">{slug}</A>
+            <Link key={i} href={`/blog/${slug.route}`} passHref>
+              <A className="myLink">
+                <BlogPreview
+                  title={slug.title}
+                  img={slug.thumbnail}
+                  date={slug.date}
+                />
+              </A>
             </Link>
           ))
         ) : (
@@ -75,10 +84,28 @@ export default function index({ slugs }) {
 export const getStaticProps = async () => {
   // will return empty array if no posts
   const files = fs.readdirSync("posts");
-  console.log(files);
+
+  const content = [];
+
+  for (let filename of files) {
+    const markdownWithMeta = fs
+      .readFileSync(path.join("posts", filename))
+      .toString();
+
+    // will return data and content
+    const parsed = matter(markdownWithMeta);
+
+    let { data } = parsed;
+    data.date = data.date.toString();
+    data.route = filename.replace(".md", "");
+
+    content.push(parsed.data);
+  }
+
+  console.log(content);
   return {
     props: {
-      slugs: files.map((filename) => filename.replace(".md", "")),
+      slugs: content,
     },
   };
 };
