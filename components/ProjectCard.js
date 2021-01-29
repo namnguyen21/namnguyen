@@ -2,6 +2,8 @@ import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 import { FiExternalLink, FiGithub, FiYoutube } from "react-icons/fi";
 
+import { P, H2 } from "../components/Type";
+
 const Card = styled.div`
   width: 100%;
   display: flex;
@@ -86,20 +88,6 @@ const DescriptionContainer = styled.div`
   }
 `;
 
-const Title = styled.h2`
-  color: ${(props) => props.theme.colors.link};
-  font-size: 32px;
-  /* text-transform: uppercase; */
-  letter-spacing: 3px;
-  font-weight: 800;
-`;
-
-const Description = styled.p`
-  font-size: 20px;
-  color: ${(props) => props.theme.colors.text};
-  font-weight: 300;
-`;
-
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -135,13 +123,13 @@ export default function ProjectCard({
       </A>
       <DescriptionContainer>
         <A href={deployed && deployed} target="_blank">
-          <Title>{title}</Title>
+          <H2 color="link">{title}</H2>
         </A>
         <TagContainer>
           {tools && tools.map((tool, i) => <Tag key={i}>{tool}</Tag>)}
         </TagContainer>
 
-        <Description>{description}</Description>
+        <P>{description}</P>
         <ButtonGroup>
           <A href={deployed && deployed} alt="Visit Site" target="_blank">
             <FiExternalLink />

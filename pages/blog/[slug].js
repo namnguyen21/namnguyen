@@ -42,14 +42,15 @@ const Content = styled.main`
   h2,
   h3 {
     color: ${(props) => props.theme.colors.link};
+    font-weight: 900
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 35px;
   }
 
   h2 {
-    font-size: 25px;
+    font-size: 30px;
   }
 
   p {
@@ -59,7 +60,7 @@ const Content = styled.main`
   }
 
   img {
-    width: 50%;
+    width: 100%;
     display: block;
   }
 

@@ -5,6 +5,10 @@ import Section from "../components/Section";
 import Link from "next/link";
 import fs from "fs";
 import LazyLoad from "react-lazyload";
+import matter from "gray-matter";
+import path from "path";
+
+import { P, H3 } from "../components/Type";
 
 const Intro = styled.h1`
   font-size: 50px;
@@ -19,18 +23,10 @@ const Intro = styled.h1`
   }
 `;
 
-// const StyledLayout = styled(Layout)`
-//   width: 1000px;
-//   @media (max-width: 800px) {
-//     width: 100%;
-//     padding: 0 20px;
-//   }
-// `;
-
 const HeroSection = styled(Section)`
   @media (min-width: 800px) {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
   }
 `;
 
@@ -79,7 +75,7 @@ const ContentBlockHeader = styled.h3`
   color: ${(props) => props.theme.colors.text};
   font-weight: 700;
   margin-right: 20px;
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 `;
 
 const ContentBlockTitle = styled.h3`
@@ -105,11 +101,11 @@ const Card = styled(Flex)`
   @media (max-width: 800px) {
     width: 100%;
   }
-`;
-
-const P = styled.p`
-  color: ${(props) => props.theme.colors.text};
-  font-size: 16px;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.02);
+    border: solid 1px ${(props) => props.theme.colors.link};
+  }
 `;
 
 const ALink = styled.a`
@@ -123,7 +119,7 @@ const ALink = styled.a`
   text-align: right;
 `;
 
-export default function Home({ latestProj }) {
+export default function Home({ latestProj, latestBlog }) {
   return (
     <>
       <Head>
@@ -150,15 +146,46 @@ export default function Home({ latestProj }) {
                   target="_blank"
                 >
                   <Card>
-                    <Img src={latestProj.image} alt={latestProj.title} />
+                    <LazyLoad>
+                      <Img src={latestProj.image} alt={latestProj.title} />
+                    </LazyLoad>
                     <div>
-                      <ContentBlockTitle>{latestProj.title}</ContentBlockTitle>
-                      <P>{latestProj.description}</P>
+                      <H3 style={{ marginBottom: "10px" }} color="link">
+                        {latestProj.title}
+                      </H3>
+                      <P size="16px">{latestProj.description}</P>
                     </div>
                   </Card>
                 </a>
                 <Link href="/projects">
                   <ALink>{">"} View all projects</ALink>
+                </Link>
+              </div>
+            </ContentSection>
+            {/* ----------------------- */}
+            <ContentSection>
+              <ContentBlockHeader>Latest Post:</ContentBlockHeader>
+              <div>
+                <Link href={`/blog/${latestBlog.title.toLowerCase()}`}>
+                  <a alt={`Visit ${latestBlog.title}`}>
+                    <Card>
+                      <LazyLoad>
+                        <Img
+                          src={latestBlog.thumbnail}
+                          alt={latestBlog.title}
+                        />
+                      </LazyLoad>
+                      <div>
+                        <H3 style={{ marginBottom: "10px" }} color="link">
+                          {latestBlog.title}
+                        </H3>
+                        <P size="16px">{latestBlog.description}</P>
+                      </div>
+                    </Card>
+                  </a>
+                </Link>
+                <Link href="/blog">
+                  <ALink>{">"} View all posts</ALink>
                 </Link>
               </div>
             </ContentSection>
@@ -169,13 +196,30 @@ export default function Home({ latestProj }) {
   );
 }
 
-export const getStaticProps = () => {
+export const getStaticProps = async () => {
   const projects = fs.readFileSync("projects/projects.json");
   const latestProj = JSON.parse(projects)[0];
+
+  const slugs = fs.readdirSync("posts");
+  const blogPosts = [];
+
+  for (let slug of slugs) {
+    const file = fs.readFileSync(path.join("posts", slug)).toString();
+
+    const parsed = matter(file);
+
+    parsed.data.date = parsed.data.date.toString();
+    blogPosts.push(parsed.data);
+  }
+
+  blogPosts.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
 
   return {
     props: {
       latestProj,
+      latestBlog: blogPosts[0],
     },
   };
 };

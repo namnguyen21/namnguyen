@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 
+import { P, H2 } from "./Type";
+
 const Card = styled.article`
   width: 100%;
   display: flex;
@@ -14,19 +16,8 @@ const Img = styled.img`
 
 const Content = styled.div`
   > *:not(:last-child) {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
-`;
-
-const Title = styled.h2`
-  color: ${(props) => props.theme.colors.link};
-  font-size: 30px;
-  font-weight: 700;
-`;
-
-const Description = styled.p`
-  font-size: 18px;
-  font-weight: 400;
 `;
 
 const Date = styled.p`
@@ -46,9 +37,9 @@ export default function BlogPreview({ url, img, title, description, date }) {
         <Img src={img ? img : null} alt={title && title} />
       </LazyLoad>
       <Content>
-        <Title>{title && title}</Title>
+        <H2 color="link">{title && title}</H2>
         <Date>{date && parseDate(date)}</Date>
-        <Description>{description && description}</Description>
+        <P>{description && description}</P>
       </Content>
     </Card>
   );

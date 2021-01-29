@@ -63,6 +63,7 @@ export default function index({ slugs }) {
                   title={slug.title}
                   img={slug.thumbnail}
                   date={slug.date}
+                  description={slug.description}
                 />
               </A>
             </Link>
