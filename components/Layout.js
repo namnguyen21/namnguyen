@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Head from "next/head";
 import Nav from "./Nav";
 
 const Container = styled.div`
@@ -14,9 +15,15 @@ const Container = styled.div`
 
 export default function Layout({ children, className }) {
   return (
-    <Container className={className}>
-      <Nav />
-      {children}
-    </Container>
+    <>
+      <Head>
+        <link rel="icon" href="/images/avatar.png" />
+        <title>Nam Nguyen</title>
+      </Head>
+      <Container className={className}>
+        <Nav />
+        {children}
+      </Container>
+    </>
   );
 }

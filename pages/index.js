@@ -124,7 +124,6 @@ export default function Home({ latestProj, latestBlog }) {
     <>
       <Head>
         <title>Nam Nguyen</title>
-        <link rel="icon" href="/images/avatar.png" />
       </Head>
       <Layout>
         <HeroSection>
