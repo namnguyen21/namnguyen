@@ -251,7 +251,7 @@ export default function Post({ htmlString, data }) {
         <title>{data.title}</title>
         <meta
           property="og:image"
-          content={`https://namnguyen-portfolio.netlify.app${data.thumbnail}`}
+          content={`https://namnguyen-portfolio.netlify.app/${data.thumbnail}`}
         />
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="200" />
