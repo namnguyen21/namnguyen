@@ -5,6 +5,7 @@ import lottie from "lottie-web";
 import { useEffect, useRef } from "react";
 import path from "path";
 import matter from "gray-matter";
+import Head from "next/head";
 
 import Layout from "../../components/Layout";
 import Section from "../../components/Section";
@@ -53,32 +54,47 @@ export default function index({ slugs }) {
   }, []);
 
   return (
-    <Layout>
-      <Section>
-        {slugs.length > 0 ? (
-          slugs.map((slug, i) => (
-            <Link key={i} href={`/blog/${slug.route}`} passHref>
-              <A className="myLink">
-                <BlogPreview
-                  title={slug.title}
-                  img={slug.thumbnail}
-                  date={slug.date}
-                  description={slug.description}
-                />
-              </A>
-            </Link>
-          ))
-        ) : (
-          <DisplayError>
-            <AnimationContainer ref={container}></AnimationContainer>
-            <Error>
-              Looks like you're a little early! I'm currently working on content
-              right now, so please come back soon!
-            </Error>
-          </DisplayError>
-        )}
-      </Section>
-    </Layout>
+    <>
+      <Head>
+        <meta
+          name="description"
+          content="Personal blog for software development."
+        />
+        <meta property="og:image" content="/images/avatar.png" />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="200" />
+        <meta property="og:description" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:title" content="Nam Nguyen - Blog" />
+        <meta property="og:type" content="website" />
+      </Head>
+      <Layout>
+        <Section>
+          {slugs.length > 0 ? (
+            slugs.map((slug, i) => (
+              <Link key={i} href={`/blog/${slug.route}`} passHref>
+                <A className="myLink">
+                  <BlogPreview
+                    title={slug.title}
+                    img={slug.thumbnail}
+                    date={slug.date}
+                    description={slug.description}
+                  />
+                </A>
+              </Link>
+            ))
+          ) : (
+            <DisplayError>
+              <AnimationContainer ref={container}></AnimationContainer>
+              <Error>
+                Looks like you're a little early! I'm currently working on
+                content right now, so please come back soon!
+              </Error>
+            </DisplayError>
+          )}
+        </Section>
+      </Layout>
+    </>
   );
 }
 

@@ -6,12 +6,20 @@ import { P, H2 } from "./Type";
 const Card = styled.article`
   width: 100%;
   display: flex;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 const Img = styled.img`
-  height: 200px;
   border-radius: 10px;
   margin-right: 20px;
+  @media (min-width: 800px) {
+    height: 200px;
+  }
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 const Content = styled.div`

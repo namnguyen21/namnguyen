@@ -33,7 +33,7 @@ const Header = styled.div`
   margin-bottom: 50px;
 `;
 
-const Content = styled.main`
+const Content = styled.article`
   color: ${(props) => props.theme.colors.text};
 
   > *:not(:last-child) {
@@ -249,7 +249,12 @@ export default function Post({ htmlString, data }) {
     <>
       <Head>
         <title>{data.title}</title>
-        <meta title="description" content={data.description} />
+        <meta property="og:image" content={data.thumbnail} />
+        <meta property="og:image:width" content="300" />
+        <meta property="og:image:height" content="200" />
+        <meta property="og:description" content={data.description} />
+        <meta property="og:title" content={data.title} />
+        <meta property="og:type" content="website" />
       </Head>
       <Layout>
         <StyledSection>
@@ -280,7 +285,8 @@ export const getStaticPaths = async () => {
 };
 
 // will provide props for our post component
-export const getStaticProps = async ({ params: { slug } }) => {
+export const getStaticProps = async (context) => {
+  const { slug } = context.params;
   const markdownWithMeta = fs
     .readFileSync(path.join("posts", slug + ".md"))
     .toString();

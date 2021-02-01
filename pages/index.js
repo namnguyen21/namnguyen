@@ -57,6 +57,11 @@ const Content = styled.div`
   @media (min-width: 800px) {
     margin-left: 100px;
   }
+  @media (max-width: 800px) {
+    > *:not(:last-child) {
+      margin-bottom: 50px;
+    }
+  }
 `;
 
 const Flex = styled.div`
@@ -89,6 +94,9 @@ const Img = styled.img`
   width: 200px;
   border-radius: 10px;
   margin-right: 20px;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const Card = styled(Flex)`
@@ -98,12 +106,12 @@ const Card = styled(Flex)`
   align-items: center;
   max-width: 450px;
   margin-bottom: 15px;
+  border: solid 1px ${(props) => props.theme.colors.paper};
   @media (max-width: 800px) {
     width: 100%;
   }
   transition: all 0.2s;
   &:hover {
-    transform: scale(1.02);
     border: solid 1px ${(props) => props.theme.colors.link};
   }
 `;

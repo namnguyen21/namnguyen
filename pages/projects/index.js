@@ -1,4 +1,6 @@
 import fs from "fs";
+import Head from 'next/head'
+
 import Section from "../../components/Section";
 import Layout from "../../components/Layout";
 import ProjectCard from "../../components/ProjectCard";
@@ -6,6 +8,17 @@ import ProjectCard from "../../components/ProjectCard";
 export default function index({ projects }) {
   return (
     <>
+    <Head>
+    <meta
+          name="description"
+          content="Personal portfolio for software development."
+        />
+        <meta property="og:image" content="/images/avatar.png" />
+        <meta property="og:description" content="Personal portfolio for software development." />
+        <meta property="og:url" content="" />
+        <meta property="og:title" content="Nam Nguyen - Portfolio" />
+        <meta property="og:type" content="website" />
+    </Head>
       <Layout>
         <Section>
           {projects.map((proj, i) => (
