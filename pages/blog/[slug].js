@@ -249,7 +249,10 @@ export default function Post({ htmlString, data }) {
     <>
       <Head>
         <title>{data.title}</title>
-        <meta property="og:image" content={data.thumbnail} />
+        <meta
+          property="og:image"
+          content={`https://namnguyen-portfolio.netlify.app${data.thumbnail}`}
+        />
         <meta property="og:image:width" content="300" />
         <meta property="og:image:height" content="200" />
         <meta property="og:description" content={data.description} />
