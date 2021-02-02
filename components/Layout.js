@@ -2,15 +2,9 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Nav from "./Nav";
+import Footer from "./Footer";
 
 const Container = styled.div`
-  width: 800px;
-  margin: 100px auto 0 auto;
-  @media (max-width: 800px) {
-    width: 100%;
-    padding: 0 20px;
-  }
-  padding-bottom: 100px;
   color: ${(props) => props.theme.colors.text};
 `;
 
@@ -36,6 +30,7 @@ export default function Layout({ children, className }) {
       <Container className={className}>
         <Nav isAtTop={isAtTop} />
         {children}
+        <Footer />
       </Container>
     </>
   );

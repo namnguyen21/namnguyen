@@ -12,6 +12,7 @@ const Header = styled.nav`
   top: 0;
   left: 0;
   right: 0;
+  z-index: 9999999;
   background-color: ${(props) => props.theme.colors.paper};
   border-bottom: ${(props) =>
     props.isAtTop

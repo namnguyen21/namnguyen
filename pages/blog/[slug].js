@@ -12,7 +12,7 @@ import Section from "../../components/Section";
 
 const StyledSection = styled(Section)`
   width: 600px;
-  margin: auto;
+  margin: 100px auto 0 auto;
   @media (max-width: 800px) {
     width: 100%;
     padding: 0 10px 100px 10px;
@@ -235,7 +235,7 @@ const Content = styled.article`
   }
 `;
 
-export default function Post({ htmlString, data }) {
+export default function Post({ htmlString, data}) {
   useEffect(() => {
     Prism.highlightAll();
   });
