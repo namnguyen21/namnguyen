@@ -25,6 +25,7 @@ const Header = styled.div`
     margin-bottom: 10px;
     font-weight: 900;
     letter-spacing: 2px;
+    font-family: ${(props) => props.theme.font.heading};
   }
 
   p {
@@ -45,6 +46,7 @@ const Content = styled.article`
   h3 {
     color: ${(props) => props.theme.colors.link};
     font-weight: 900;
+    font-family: ${(props) => props.theme.font.heading};
   }
 
   h1 {
@@ -59,6 +61,7 @@ const Content = styled.article`
     line-height: 1.5;
     font-size: 20px;
     font-weight: 300;
+    letter-spacing: 0.5px;
   }
 
   img {
@@ -235,7 +238,7 @@ const Content = styled.article`
   }
 `;
 
-export default function Post({ htmlString, data}) {
+export default function Post({ htmlString, data }) {
   useEffect(() => {
     Prism.highlightAll();
   });

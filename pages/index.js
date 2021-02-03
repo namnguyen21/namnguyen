@@ -18,6 +18,7 @@ const Intro = styled.h1`
   line-height: 1;
   width: 100%;
   text-align: center;
+  font-family: ${props => props.theme.font.body};
   @media (max-width: 800px) {
     font-size: 60px;
   }
@@ -83,13 +84,6 @@ const ContentBlockHeader = styled.h3`
   margin-bottom: 15px;
 `;
 
-const ContentBlockTitle = styled.h3`
-  font-size: 25px;
-  color: ${(props) => props.theme.colors.link};
-  font-weight: 700;
-  margin-bottom: 10px;
-`;
-
 const Img = styled.img`
   width: 200px;
   border-radius: 10px;
@@ -125,6 +119,7 @@ const ALink = styled.a`
     color: ${(props) => props.theme.colors.link};
   }
   text-align: right;
+  font-family: ${props => props.theme.font.body};
 `;
 
 export default function Home({ latestProj, latestBlog }) {

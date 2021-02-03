@@ -8,6 +8,10 @@ const THEME = {
     text: "#FFFFFF",
     textSecondary: "#86a1b5",
   },
+  font: {
+    body: "'Open Sans', sans-serif",
+    heading: "'Ubuntu', sans-serif",
+  },
 };
 
 function MyApp({ Component, pageProps }) {

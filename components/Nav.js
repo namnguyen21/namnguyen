@@ -18,12 +18,10 @@ const Header = styled.nav`
     props.isAtTop
       ? `solid 1px ${props.theme.colors.paper}`
       : "solid 1px #1e232e"};
-  /* display: ${(props) => (props.hasScrolledUp ? null : "none")}; */
+
   transition: all 0.3s;
-  /* transform: ${(props) =>
-    props.hasScrolledUp || (props.isAtTop && !props.hasScrolledUp)
-      ? "translateY(0px)"
-      : "translateY(-100px)"}; */
+
+  font-family: ${(props) => props.theme.font.body};
 `;
 
 const Logo = styled.h1`
@@ -74,67 +72,13 @@ const NavLink = styled.a`
   }
 `;
 
-const HamburgerContainer = styled.div`
-  display: inline-block;
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  @media (min-width: 800px) {
-    display: none;
-  }
-`;
-
-const MobileNav = styled.button`
-  @media (min-width: 800px) {
-    display: none;
-  }
-  @media (max-width: 800px) {
-    background-color: #fff;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    border: none;
-  }
-`;
-const Hamburger = styled.div`
-  display: inline-block;
-  height: 2px;
-  width: 20px;
-  background-color: ${(props) => props.theme.colors.paper};
-  position: relative;
-  &::after,
-  &::before {
-    content: " ";
-    width: 20px;
-    height: 2px;
-    position: absolute;
-    background-color: ${(props) => props.theme.colors.paper};
-    left: 0;
-    right: 0;
-  }
-
-  &::before {
-    top: -5px;
-  }
-
-  &::after {
-    bottom: -5px;
-  }
-`;
-
 export default function Nav({ isAtTop }) {
   return (
     <Header isAtTop={isAtTop}>
       <Container>
         <Link href="/">
-          <a >
-            <Logo>
-              n<sup>2</sup>
-            </Logo>
+          <a>
+            <Logo>n</Logo>
           </a>
         </Link>
         <div style={{ display: "flex" }}>
@@ -142,16 +86,10 @@ export default function Nav({ isAtTop }) {
             <NavLink>Blog</NavLink>
           </Link>
           <Link href="/projects">
-            <NavLink>Projects</NavLink>
+            <NavLink>Portfolio</NavLink>
           </Link>
         </div>
       </Container>
-
-      {/* <HamburgerContainer>
-        <MobileNav>
-          <Hamburger />
-        </MobileNav>
-      </HamburgerContainer> */}
     </Header>
   );
 }
