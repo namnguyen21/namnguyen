@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Next.js Blog Deployed on Netlify: #1 Utilizing Next.js to Implement a Blog"
+title: "Creating a Blog with Next.js "
 description: Follow me as I'll walk through the steps of using Next.js to create
   a blog, NetlifyCMS to create and provide content, and Netlify to deploy the
   blog effortlessly. We'll cover topics such as dynamic routing, static site
