@@ -1,10 +1,8 @@
 ---
 layout: blog
 title: "Creating a Blog with Next.js "
-description: Follow me as I'll walk through the steps of using Next.js to create
-  a blog, NetlifyCMS to create and provide content, and Netlify to deploy the
-  blog effortlessly. We'll cover topics such as dynamic routing, static site
-  generation, and CMS integration.
+description: As part 1 of.3 article series, I'll cover the basics of how to
+  create a blog with Next.js.
 date: 2021-02-04T18:48:23.423Z
 thumbnail: /images/uploads/next-blog-netlify.png
 code:
