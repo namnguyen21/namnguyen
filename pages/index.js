@@ -27,7 +27,7 @@ const Intro = styled.h1`
 const HeroSection = styled(Section)`
   @media (min-width: 800px) {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-end;
   }
 `;
 
@@ -148,9 +148,9 @@ export default function Home({ latestProj, latestBlog }) {
                   target="_blank"
                 >
                   <Card>
-                    <LazyLoad>
+                    {/* <LazyLoad>
                       <Img src={latestProj.image} alt={latestProj.title} />
-                    </LazyLoad>
+                    </LazyLoad> */}
                     <div>
                       <H3 style={{ marginBottom: "10px" }} color="link">
                         {latestProj.title}
@@ -171,12 +171,12 @@ export default function Home({ latestProj, latestBlog }) {
                 <Link href={`/blog/${latestBlog.title.toLowerCase()}`}>
                   <a alt={`Visit ${latestBlog.title}`}>
                     <Card>
-                      <LazyLoad>
+                      {/* <LazyLoad>
                         <Img
                           src={latestBlog.thumbnail}
                           alt={latestBlog.title}
                         />
-                      </LazyLoad>
+                      </LazyLoad> */}
                       <div>
                         <H3 style={{ marginBottom: "10px" }} color="link">
                           {latestBlog.title}

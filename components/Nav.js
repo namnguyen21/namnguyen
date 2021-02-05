@@ -20,6 +20,8 @@ const Header = styled.nav`
       : "solid 1px #1e232e"};
 
   transition: all 0.3s;
+  transform: ${(props) =>
+    props.show || props.isAtTop ? "translateY(0)" : "translateY(-100px)"};
 
   font-family: ${(props) => props.theme.font.body};
 `;
@@ -72,9 +74,9 @@ const NavLink = styled.a`
   }
 `;
 
-export default function Nav({ isAtTop }) {
+export default function Nav({ isAtTop, show }) {
   return (
-    <Header isAtTop={isAtTop}>
+    <Header show={show} isAtTop={isAtTop}>
       <Container>
         <Link href="/">
           <a>

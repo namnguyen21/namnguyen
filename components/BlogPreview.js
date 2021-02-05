@@ -9,13 +9,17 @@ const Card = styled.article`
   @media (max-width: 800px) {
     flex-direction: column;
   }
+  margin-bottom: 100px;
+  &:last-child() {
+    margin-bottom: 0px;
+  }
 `;
 
 const Img = styled.img`
-  border-radius: 10px;
   margin-right: 20px;
   @media (min-width: 800px) {
-    height: 200px;
+    height: 150px;
+    width: calc(1.91 * 150);
   }
   @media (max-width: 800px) {
     width: 100%;

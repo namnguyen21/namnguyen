@@ -10,15 +10,26 @@ const Container = styled.div`
 
 export default function Layout({ children, className }) {
   const [isAtTop, setIsAtTop] = useState(true);
+  const [show, setShow] = useState(true);
+  let prevScroll = 0;
 
   useEffect(() => {
     window.onscroll = function () {
       // prevScrollPos = currentScrollPos;
       if (window.pageYOffset < 25) {
         setIsAtTop(true);
+        setShow(true);
       } else {
         setIsAtTop(false);
       }
+
+      if (window.pageYOffset > prevScroll) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+
+      prevScroll = window.pageYOffset;
     };
   }, [isAtTop]);
   return (
@@ -28,7 +39,7 @@ export default function Layout({ children, className }) {
         <title>Nam Nguyen</title>
       </Head>
       <Container className={className}>
-        <Nav isAtTop={isAtTop} />
+        <Nav show={show} isAtTop={isAtTop} />
         {children}
         <Footer />
       </Container>

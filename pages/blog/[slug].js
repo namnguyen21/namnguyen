@@ -57,11 +57,42 @@ const Content = styled.article`
     font-size: 30px;
   }
 
+  h3 {
+    font-size: 25px;
+  }
+
   p {
     line-height: 1.5;
     font-size: 20px;
     font-weight: 300;
     letter-spacing: 0.5px;
+
+    code {
+      background-color: #c4c4c4;
+      color: ${(props) => props.theme.colors.paper};
+      padding: 0 5px;
+    }
+  }
+
+  ol,
+  ul {
+    font-size: 18px;
+    font-weight: 300;
+    list-style-position: inside;
+    
+    > *:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    code {
+      background-color: #c4c4c4;
+      color: ${(props) => props.theme.colors.paper};
+      padding: 0 5px;
+    }
   }
 
   img {
