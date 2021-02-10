@@ -129,7 +129,7 @@ export const getStaticProps = async () => {
     data.date = data.date.toString();
     data.route = filename.replace(".md", "");
 
-    const bodyArr = parsed.content.split(" ").slice(0, 100);
+    const bodyArr = parsed.content.split(" ").slice(0, 60);
     bodyArr.push("...");
     const body = bodyArr.join(" ");
 
