@@ -4,7 +4,7 @@ title: "Next.js Blog Deployed on Netlify #1: Blogging with Next"
 description: As part 1 of a 3 article series, I'll cover the basics of how to
   create a blog with Next.js.
 date: 2021-02-04T18:48:23.423Z
-thumbnail: /images/uploads/next-blog-netlify.png
+thumbnail: /images/uploads/next-netlify.png
 code:
   lang: easybuild
   code: asf
