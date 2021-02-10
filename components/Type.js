@@ -60,8 +60,8 @@ export const H2 = ({ children, className, color, style }) => {
 };
 
 const TypeH3 = styled.h3`
-  font-size: 25px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 600;
   color: ${(props) =>
     props.color === "text"
       ? props.theme.colors.text

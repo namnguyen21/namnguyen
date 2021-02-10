@@ -4,7 +4,6 @@ import Layout from "../components/Layout";
 import Section from "../components/Section";
 import Link from "next/link";
 import fs from "fs";
-import LazyLoad from "react-lazyload";
 import matter from "gray-matter";
 import path from "path";
 
@@ -18,7 +17,7 @@ const Intro = styled.h1`
   line-height: 1;
   width: 100%;
   text-align: center;
-  font-family: ${props => props.theme.font.body};
+  font-family: ${(props) => props.theme.font.body};
   @media (max-width: 800px) {
     font-size: 60px;
   }
@@ -119,7 +118,7 @@ const ALink = styled.a`
     color: ${(props) => props.theme.colors.link};
   }
   text-align: right;
-  font-family: ${props => props.theme.font.body};
+  font-family: ${(props) => props.theme.font.body};
 `;
 
 export default function Home({ latestProj, latestBlog }) {
@@ -148,9 +147,6 @@ export default function Home({ latestProj, latestBlog }) {
                   target="_blank"
                 >
                   <Card>
-                    {/* <LazyLoad>
-                      <Img src={latestProj.image} alt={latestProj.title} />
-                    </LazyLoad> */}
                     <div>
                       <H3 style={{ marginBottom: "10px" }} color="link">
                         {latestProj.title}
@@ -171,12 +167,6 @@ export default function Home({ latestProj, latestBlog }) {
                 <Link href={`/blog/${latestBlog.title.toLowerCase()}`}>
                   <a alt={`Visit ${latestBlog.title}`}>
                     <Card>
-                      {/* <LazyLoad>
-                        <Img
-                          src={latestBlog.thumbnail}
-                          alt={latestBlog.title}
-                        />
-                      </LazyLoad> */}
                       <div>
                         <H3 style={{ marginBottom: "10px" }} color="link">
                           {latestBlog.title}

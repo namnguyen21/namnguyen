@@ -5,11 +5,24 @@ import lottie from "lottie-web";
 import { useEffect, useRef } from "react";
 import path from "path";
 import matter from "gray-matter";
+import marked from "marked";
 import Head from "next/head";
 
 import Layout from "../../components/Layout";
 import Section from "../../components/Section";
 import BlogPreview from "../../components/BlogPreview";
+
+const StyledSection = styled(Section)`
+  width: 600px;
+  margin: 100px auto 0 auto;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  > *:not(:last-child) {
+    margin-bottom: 100px;
+  }
+`;
 
 const A = styled.a`
   color: ${(props) => props.theme.colors.link};
@@ -69,16 +82,16 @@ export default function index({ slugs }) {
         <meta property="og:type" content="website" />
       </Head>
       <Layout>
-        <Section>
+        <StyledSection>
           {slugs.length > 0 ? (
-            slugs.map((slug, i) => (
-              <Link key={i} href={`/blog/${slug.route}`} passHref>
+            slugs.map(({ content, data }, i) => (
+              <Link key={i} href={`/blog/${data.route}`} passHref>
                 <A className="myLink">
                   <BlogPreview
-                    title={slug.title}
-                    img={slug.thumbnail}
-                    date={slug.date}
-                    description={slug.description}
+                    title={data.title}
+                    img={data.thumbnail}
+                    date={data.date}
+                    content={content}
                   />
                 </A>
               </Link>
@@ -92,7 +105,7 @@ export default function index({ slugs }) {
               </Error>
             </DisplayError>
           )}
-        </Section>
+        </StyledSection>
       </Layout>
     </>
   );
@@ -116,10 +129,20 @@ export const getStaticProps = async () => {
     data.date = data.date.toString();
     data.route = filename.replace(".md", "");
 
-    content.push(parsed.data);
+    const bodyArr = parsed.content.split(" ").slice(0, 100);
+    bodyArr.push("...");
+    const body = bodyArr.join(" ");
+
+    content.push({ data: parsed.data, content: marked(body) });
   }
 
-  console.log(content);
+  content.sort((a, b) => {
+
+    return new Date(b.data.date) - new Date(a.data.date);
+  });
+
+  // console.log(content);
+
   return {
     props: {
       slugs: content,

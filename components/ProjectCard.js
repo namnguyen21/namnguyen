@@ -69,9 +69,10 @@ const Tag = styled.div`
 const StyledImage = styled.img`
   border-radius: 10px;
   width: 400px;
+  height: calc(400px * 3 / 4);
   @media screen and (max-width: 800px) {
     width: 100%;
-
+    
     margin-bottom: 50px;
   }
 `;
