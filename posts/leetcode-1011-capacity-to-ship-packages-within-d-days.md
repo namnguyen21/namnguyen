@@ -41,11 +41,11 @@ It can be a bit tricky getting started on this problem. The first time I encount
 weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
-Given this example, without a requirement for `D` days, we can try to think of what the worst and best case scenarios. The best case scenario (or the smallest minimum capacity needed for any `D` value), is if `D = weights.length`. That is, if the `weights` array was into `weights.length` number of subarrays, where each subarray contains only one value. After all, it'd be impossible to get less than one value per subarray. So what would be the minimum capacity needed if we were to do that? Well, it would be the maximum value found within the array, which in this case is 10.  
+Given this example, without a requirement for `D` days, we can try to think of what the worst and best case scenarios. The best case scenario (or the smallest minimum capacity needed for any `D` value), is if `D = weights.length`. That is, if the `weights` array was split into `weights.length` number of subarrays, where each subarray contains only one value. After all, it'd be impossible to get less than one value per subarray. So what would be the minimum capacity needed if we were to do that? Well, it would be the maximum value found within the array, which in this case is 10.  
 
 With the worst case scenario, we'll have to split the array into one array, or in other words, not split the array at all. In that case, the minimum capacity needed would be the sum of all its values `1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55`.  
 
-What you'll notice now is that we have an effective *range* of possible capacities to work with. When the array is split into the most possible subarrays (the length of the array), the capacity will be the single maximum value found in the array and when the array is simply split into 1, the capacity will be the sum of all its values. Therefore all other possible answers should fall **somewhere in between**. 
+What you'll notice now is that we have an effective *range,* from 10 to 55 in this example, of possible capacities to work with. When the array is split into the most possible subarrays (the length of the array), the capacity will be the single maximum value found in the array and when the array is simply split into one, the capacity will be the sum of all its values. Therefore all other possible answers should fall **somewhere in between**. 
 
 Starting to sound more manageable? Before we move on, let's get that coded up.
 
@@ -64,7 +64,7 @@ function shipWithinDays (weights, D) {
 
 ### Now What?
 
-We now know that our solution will fall within a range of values. Any time we're presented with a sorted array of values, or in this case a range, binary search has to come to mind. With a O(log n) run time, binary search is incredibly useful and efficient. 
+We now know that our solution will fall within a range of values. Any time we're presented with a sorted array of values, or in this case a range, binary search has to come to mind. With an O(log n) run time, binary search is incredibly useful and efficient. 
 
 ```javascript
 function shipWithinDays (weights, D) {
@@ -89,7 +89,7 @@ With that in mind, we'll need to check for *something* at every step of the bina
 // new helper function to loop through the weights array
 // and determine the days needed to ship packages at a certain capacity
 function determineDaysBasedOnCapacity(weights, capacity) {
-    // it will take at the minimum 1 day to ship
+  // it will take at the minimum 1 day to ship
   let days = 1;
   let sum = 0;
   for (let weight of weights) {
@@ -140,8 +140,8 @@ Let's break that down.
 
 To determine the time complexity of this solution, a breakdown of the function(s) is needed. 
 
-1. Our main `shipWithinDays` function first iterates once through the `weights` array to determine define the `min` and `max` variables. At the very least, this will be an O(W) solution where "W" is the length of the `weights` array.
-2. Binary search was then implemented. This results in an O(W + logN) run time where "N" is the range between our `min` and `max` values. 
-3. Within the binary search, the `determineDaysBasedOnCapacity` function is called, which iterates through the `weights` array. This results in an O(W + logN \* W) run time where "log N \* W" represents iterating through the `weights` array at each step of the binary search.
+1. Our main `shipWithinDays` function first iterates once through the `weights` array to determine define the `min` and `max` variables. At the very least, this will be an O(N) solution where "N" is the length of the `weights` array.
+2. Binary search was then implemented. This results in an O(N + logM) run time where "M" is the range between our `min` and `max` values. 
+3. Within the binary search, the `determineDaysBasedOnCapacity` function is called, which iterates through the `weights` array. This results in an O(N + logM \* N) run time where "log M \* N" represents iterating through the `weights` array at each step of the binary search.
 
-Therefore our end time complexity is O(W + logN \* W). In simplified Big-O notation, this would boil down to a O(n \* log n) solution as the solution's runtime is bounded by the larger value. In addition, this solution does not use any extra space and results in an O(1) space complexity.
+Therefore our end time complexity is O(N + logM \* N). In simplified Big-O notation, this would boil down to a O(n \* log n) solution as the solution's runtime is bounded by the larger value. In addition, this solution does not use any extra space and results in an O(1) space complexity.
