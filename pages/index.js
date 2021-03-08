@@ -164,7 +164,7 @@ export default function Home({ latestProj, latestBlog }) {
             <ContentSection>
               <ContentBlockHeader>Latest Post:</ContentBlockHeader>
               <div>
-                <Link href={`/blog/${latestBlog.title.toLowerCase()}`}>
+                <Link href={`/blog/${latestBlog.route}`}>
                   <a alt={`Visit ${latestBlog.title}`}>
                     <Card>
                       <div>
@@ -201,6 +201,7 @@ export const getStaticProps = async () => {
     const parsed = matter(file);
 
     parsed.data.date = parsed.data.date.toString();
+    parsed.data.route = slug.replace('.md', '')
     blogPosts.push(parsed.data);
   }
 
