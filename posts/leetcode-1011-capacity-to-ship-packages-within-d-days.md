@@ -8,7 +8,7 @@ description: Learn how to use binary search to optimize your algorithm for
 date: 2021-03-05T17:56:21.520Z
 thumbnail: /images/uploads/leetcode-1011.png
 ---
-Interview prepping for software engineering roles can be pretty daunting. Sometimes the Leetcode discussion board can be great, and other times maybe a more thorough dive into problems is needed. That is why I decided to start creating walkthroughs of interesting algorithmic challenges I come across, and hopefully help others along the way. 
+Interview prepping for software engineering roles can be pretty daunting. Platforms, such as [Leetcode](https://leetcode.com) and [codewars](https://www.codewars.com/), offer excellent means of practicing technical interview questions.  Sometimes the discussion boards on those sites can be great, and other times maybe a more thorough dive into problems is needed. That is why I decided to start creating walkthroughs of interesting algorithmic challenges I come across, and hopefully help others along the way. 
 
 In this article, I'll go over one of the most interesting problems I've come across so far: [Leetcode #1011](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/). Let's get right into it! 
 
@@ -31,7 +31,7 @@ We can split the array into 3 segments:
 3. [1, 4] 
 ```
 
- To further elaborate, if we were to try another possible combination of splitting the array into 3 subarrays such as `[3, 2, 2], [4, 1], and [4]`, the minimum capacity needed would be 7, which is greater than the previous capacity needed. Remember, the goal is to find the **minimum** capacity needed. 
+To further elaborate, if we were to try another possible combination of splitting the array into 3 subarrays such as `[3, 2, 2], [4, 1], and [4]`, the capacity needed would be 7, which is greater than the previous capacity needed. Remember, the goal is to find the **minimum** capacity needed. 
 
 ## Tackling the Problem
 
@@ -41,113 +41,107 @@ It can be a bit tricky getting started on this problem. The first time I encount
 weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ```
 
-Given this example, without a requirement for D days, we can try to think of what the worst and best case scenarios. The best case scenario (or the minimum capacity needed for any `D` value), is if `D = weights.length`. That is, split the `weights` array into `weights.length` number of subarrays, where each subarray contains only one value. After all, it'd be impossible to get less than one value per subarray. So what would be the minimum capacity needed if we were to do that? Well, it would be the maximum value found within the array, which in this case is 10.  
+Given this example, without a requirement for `D` days, we can try to think of what the worst and best case scenarios. The best case scenario (or the smallest minimum capacity needed for any `D` value), is if `D = weights.length`. That is, if the `weights` array was into `weights.length` number of subarrays, where each subarray contains only one value. After all, it'd be impossible to get less than one value per subarray. So what would be the minimum capacity needed if we were to do that? Well, it would be the maximum value found within the array, which in this case is 10.  
 
-Now, with the worst case scenario, we'd have to split the array into one array, or in other words, not split the array at all. In that case, the minimum capacity would simply be the sum of all values `54 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10`.  
+With the worst case scenario, we'll have to split the array into one array, or in other words, not split the array at all. In that case, the minimum capacity needed would be the sum of all its values `1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 = 55`.  
 
-What you'll notice now is that we now have an effective *range* of possible capacities to work with. When the array is split into the most possible subarrays, the capacity will be the maximum value found in the array and when the array is simply split into 1, the capacity will be the sum of all its values. Therefore all other possible answers should fall **somewhere in between**. 
+What you'll notice now is that we have an effective *range* of possible capacities to work with. When the array is split into the most possible subarrays (the length of the array), the capacity will be the single maximum value found in the array and when the array is simply split into 1, the capacity will be the sum of all its values. Therefore all other possible answers should fall **somewhere in between**. 
 
 Starting to sound more manageable? Before we move on, let's get that coded up.
 
 ```javascript
-function minimumCapacityWithinDDays (weights, D) {
-  let min = Math.max(...weights)
-  let max = weights.reduce((acc, curr) => acc + curr)
+function shipWithinDays (weights, D) {
+  // min variable will hold the maximum value found in weights
+  let min = Number.MIN_SAFE_INTEGER;
+  // max variable will hold the sum of all values
+  let max = 0;
+  for (let weight of weights) {
+    min = Math.max(min, weight);
+    max += weight;
+  }
 }
 ```
 
 ### Now What?
 
-Now that we have a working range of possible capacities that we know the solution falls within, we can iterate through that range and try to find which minimum value solves the problem. 
-
-The next part is determining what we want to be checking at every step of the way. Since we have a range of capacities, we'll need to check to check each capacity to see how many days it would take to ship all packages, compare that to `D`, and return the minimum capacity that fits.
+We now know that our solution will fall within a range of values. Any time we're presented with a sorted array of values, or in this case a range, binary search has to come to mind. With a O(log n) run time, binary search is incredibly useful and efficient. 
 
 ```javascript
-function findDaysAtThisCapacity(weights, capacity) {
-  let currentSum = 0;
-  let days = 1; // it will take at the very least 1 day
+function shipWithinDays (weights, D) {
+  let min = Number.MIN_SAFE_INTEGER;
+  let max = 0;
   for (let weight of weights) {
-     currentSum += weight
-    // once the sum is over the capacity, we'll need an additional day
-     if (currentSum > capacity) {
-       days++;
-       // this current weight doesn't fit so we'll allot it to the next day
-       currentSum = weight;
-     }
+    min = Math.max(min, weight);
+    max += weight;
   }
-  return days
-}
-
-function minimumCapacityWithinDDays (weights, D) {
-  let min = Math.max(...weights)
-  let max = weights.reduce((acc, curr) => acc + curr)
   
-  for (let i = min; i <= max; i++) {
-    const daysAtThisCapacity = findDaysAtThisCapacity(weights, i);
-    if (daysAtThisCapacity === D) {
-      // since we are iterating in increasing order, we can return the first value we find as it will be the min
-      return i
-    }
+  while (min < max) {
+    // storing the current middle value in currentCapacity
+    const currentCapacity = Math.floor((min + max) / 2);
+    // do something
   }
 }
 ```
 
-In the above code, we: 
-
-1. We iterate through every possible capacity from the minimum to the maximum values.
-2. Used a helper function that takes in the `weights` array and the current capacity, iterates through the array, sums up the weights, increments the amount of days needed whenever the weight reaches the capacity, and returns the amount of days needed.
-3. Once we find the first possible capacity that outputs the same amount of days as `D`, we immediately return that capacity.
-
-## Optimizing the Solution
-
-At this point, the solution is done and will pass the required tests. However, this isn't the most optimal solution. We currently have an O(N^2) solution as we iterate through every possible capacity, and iterate through every possible weight for each of those capacities. I bet we can do better than that. 
-
-Since we have a sorted range of capacities from our `min` and `max` that we pre-processed, we can then turn this into a modified binary search problem. To do so, just modify your code to the following: 
+With that in mind, we'll need to check for *something* at every step of the binary search. Given that there is currently a range of potential capacity values, we'll need to check whether any given capacity allows the packages to be shipped in D days. Then find the minimum of those values. For that, a modified binary search will be needed.
 
 ```javascript
-// keep our helper function the same
-function findDaysAtThisCapacity(weights, capacity) {
-  let currentSum = 0;
-  let days = 1; 
+// new helper function to loop through the weights array
+// and determine the days needed to ship packages at a certain capacity
+function determineDaysBasedOnCapacity(weights, capacity) {
+    // it will take at the minimum 1 day to ship
+  let days = 1;
+  let sum = 0;
   for (let weight of weights) {
-     currentSum += weight
-     if (currentSum > capacity) {
-       days++;
-       currentSum = weight;
-     }
-  }
-  return days
-}
-
-function minimumCapacityWithinDDays (weights, D) {
-  let min = Math.max(...weights);
-  let max = weights.reduce((acc, curr) => acc + curr);
-  // using binary search as opposed to iterating through entire range
-  while (min < max) {
-    const mid = Math.floor((min + max) / 2);
-    
-    const daysAtThisCapacity = findDaysAtThisCapacity(weights, mid);
-    if (daysAtThisCapacity > D) {
-      // not enough capacity so we'll have to move our range to the right
-      min = mid + 1
-    } else {
-      // we have either found a sufficient capacity and still need to check if it's the minimum possible value
-      // or we have too much capacity currently
-      max = mid
+    sum += weight;
+    // if the weight goes over capacity
+    if (sum > capacity) {
+      // we'll need to increment days
+      days++;
+      // and move the current weight to the next day
+      sum = weight
     }
   }
-  // our max value will fall upon the correct solution after searching
+    return days;
+}
+
+function shipWithinDays (weights, D) {
+  let min = Number.MIN_SAFE_INTEGER;
+  let max = 0;
+  for (let weight of weights) {
+    min = Math.max(min, weight);
+    max += weight;
+  }
+  
+  while (min < max) {
+    const currentCapacity = Math.floor((min + max) / 2);
+    const daysAtThisCapacity = determineDaysBasedOnCapacity(weights, currentCapacity);
+    
+    if (daysAtThisCapacity > D) {
+      min = currentCapacity + 1;
+    } else {
+      max = currentCapacity;
+    }
+  }
   return max
 }
 ```
 
-Let's recap that: 
+Let's break that down. 
 
-1. We replaced our initial `for` loop with a while loop and implemented a modified binary search in its place.
-2. For each `mid` value, we are still checking to see if the capacity is sufficient enough.
-3. You might notice that there is no `===` check in the binary search as there normally is. That is because even though we might have found a sufficient enough capacity that allows us to fit the packages into `D` days, we don't know whether it's the minimum possible value. That is why we then move our rightward boundary to the current capacity, `mid`, as opposed to `mid - 1` like you would a normal binary search. If it is the minimum possible value, the leftward pointer, `min`, would then continue to increase until the loop breaks.
-4. Then we simply return our `max` pointer which will be the correct solution.
+1. A helper function was created that takes in the `weights` array and a specific capacity value as parameters. It then iterates through the array and determines how many days it would take to ship all the packages given the current capacity constraint. At a minimum, it takes at least one day to ship so therefore the value is set to `1` to begin with.
+2. That function is called within the binary search and the return value is stored to `daysAtThisCapacity`.
+3. Similar to a normal binary search, that value is then compared to see if it is greater than `D`. When it is greater than, that means that there is not enough capacity which results in a greater amount of days to ship. Therefore, the `min` boundary needs to shift.
+4. The `else` comparison is inclusive of both situations in which there is currently too much capacity and can ship in **less** days than `D` **OR** if the capacity is sufficient to ship within `D` days and we aren't sure if it is the minimum value possible. 
+5. Therefore, instead of setting `max = currentCapacity - 1` like you would a normal binary search, we set `max = currentCapacity`, because there is the possibility that the currentCapacity is the solution to the problem. 
+6. Following this logic, if and when `currentCapacity` is the right answer and the minimum capacity needed, the `min` pointer will continue increasing until the loop breaks and we simply return the `max` value. 
 
 ## Time and Space Complexity
 
-After optimizing the solution using binary search, we've come to a time complexity of O(logN * N), which is an improvement on the previous O(N^2) solution. In addition, not using any additional space results in a most optimal space complexity of O(1).
+To determine the time complexity of this solution, a breakdown of the function(s) is needed. 
+
+1. Our main `shipWithinDays` function first iterates once through the `weights` array to determine define the `min` and `max` variables. At the very least, this will be an O(W) solution where "W" is the length of the `weights` array.
+2. Binary search was then implemented. This results in an O(W + logN) run time where "N" is the range between our `min` and `max` values. 
+3. Within the binary search, the `determineDaysBasedOnCapacity` function is called, which iterates through the `weights` array. This results in an O(W + logN \* W) run time where "log N \* W" represents iterating through the `weights` array at each step of the binary search.
+
+Therefore our end time complexity is O(W + logN \* W). In simplified Big-O notation, this would boil down to a O(n \* log n) solution as the solution's runtime is bounded by the larger value. In addition, this solution does not use any extra space and results in an O(1) space complexity.
