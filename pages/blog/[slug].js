@@ -44,9 +44,18 @@ const Content = styled.article`
   h1,
   h2,
   h3 {
-    color: ${(props) => props.theme.colors.link};
+    color: ${(props) => props.theme.colors.heading};
     font-weight: 900;
     font-family: ${(props) => props.theme.font.heading};
+  }
+  a {
+    color: ${props => props.theme.colors.link};
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      color: ${props => props.theme.colors.textSecondary};
+    }
   }
 
   h1 {
@@ -62,11 +71,11 @@ const Content = styled.article`
   }
 
   p {
-    line-height: 1.5;
-    font-size: 20px;
-    font-weight: 300;
+    line-height: 2;
+    font-size: 18px;
+    font-weight: 400;
     letter-spacing: 0.5px;
-
+    color: ${(props) => props.theme.colors.text};
     code {
       background-color: #c4c4c4;
       color: ${(props) => props.theme.colors.paper};
@@ -77,15 +86,16 @@ const Content = styled.article`
   ol,
   ul {
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400;
     list-style-position: inside;
-    
+
     > *:not(:last-child) {
       margin-bottom: 10px;
     }
-    p {
+    p, li {
       font-size: 18px;
-      font-weight: 300;
+      font-weight: 400;
+      line-height: 2;
     }
 
     code {
@@ -103,14 +113,33 @@ const Content = styled.article`
   pre {
     overflow: auto;
     background-color: #2c292d;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 20px;
+    border-left: solid 1px #dbdbdb;
+    border-bottom: solid 1px #dbdbdb;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
+
+    ::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: ${(props) => props.theme.colors.text};
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: ${(props) => props.theme.colors.heading};
+    }
 
     .token.atrule {
       color: #c792ea;

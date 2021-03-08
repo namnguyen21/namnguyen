@@ -93,7 +93,7 @@ const Img = styled.img`
 `;
 
 const Card = styled(Flex)`
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #111a2e;
   padding: 10px;
   border-radius: 10px;
   align-items: center;

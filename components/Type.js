@@ -4,7 +4,7 @@ const TypeP = styled.p`
   font-size: ${(props) => (props.size ? props.size : "20px")};
   font-weight: 300;
   line-height: 1.4;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.heading};
   font-family: ${(props) => props.theme.font.body};
   letter-spacing: 0.5px;
 `;
@@ -23,7 +23,7 @@ const TypeH1 = styled.h1`
   letter-spacing: 3px;
   color: ${(props) =>
     props.color === "text"
-      ? props.theme.colors.text
+      ? props.theme.colors.heading
       : props.color === "link"
       ? props.theme.colors.link
       : props.theme.colors.textSecondary};
