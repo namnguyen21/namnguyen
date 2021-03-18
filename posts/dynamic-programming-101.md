@@ -121,4 +121,146 @@ With the added memoization, our diagram will look much more manageable.
 
 ![Combination sum diagram after implementing memoization](/images/uploads/combination-sum-diagram-final.png "Combination sum diagram after implementing memoization")
 
-As you can see, the middle and right sub-trees no longer have to be executed to the same extent they previously were because the solutions to those sub-trees have already been solved and effectively memoized. The solution is now much more acceptable and doesn't require an abundance of time and space to run.
+As you can see, the middle and right sub-trees no longer have to be executed to the same extent they previously were because the solutions to those sub-trees have already been solved and effectively memoized. The solution is now much more acceptable and doesn't require an abundance of time and space to run. 
+
+### Further Optimizing The Solution Using a Bottom-Up Approach
+
+Thus far, we've gone over a top-down recursive solution and using memoization to optimize that solution. Recursion is often a great starting point to solve solutions, but will always run the issue of being a worse optimized solution to a problem due to the nature of recursion and its requirement for the call stack to hold function calls in memory. 
+
+That being said, recursive functions can be written iteratively, and it is often the solution to optimizing the solution at hand. To understand how a bottom-up iterative solution can be created, it'd be useful to go over what our top down solution did step-by-step. 
+
+1. The solution first takes in some `target` value and an array `nums`. 
+2. The function then goes top-down, starting from the target value, and begins subtracting values taken from `nums` away from `target`.
+3. That is, the function has gone from `findWaysToSum(nums, 4)` to `findWaysToSum(3), findWaysToSum(2), and findWaysToSum(1)`.
+4. This process continues for each of those function calls until either zero or a negative number is reached.
+
+So given that the top-down approach required working from the `target` backwards, what if we built the bottom-up solution from zero to `target`? 
+
+### Working Out The Logic
+
+Answer this question: how many ways are there to get a `target` of one given the previous example where `nums = [1,2,3]`? The answer would be *one way*. We can only get to one by using the value one. 
+
+How about the number of ways to get to *two?* Let's think that through together. 
+
+```markdown
+target = 2, nums = [1,2,3]
+
+From 2, we can either take away 1 or 2. We cannot take away 3 as it'd be too much.
+
+What happens when we take away 1? We are left with 1. 
+We already know that there is only 1 way to get to 1. 
+That means when you take 1 away from 2, there is ONE way. 
+
+What happens when we take 2 away from 2? 
+Well, we are at 0 which means we've found ANOTHER way.
+
+Therefore when target = 2, there are two ways to get to 2.
+```
+
+Now let's see what happens when `target = 3`. 
+
+```markdown
+target = 3, nums = [1,2,3]
+
+From 3, we can either take away 1, 2, or 3.
+
+3 - 1 = 2:
+From the previous target = 2, there are precisely two ways to get to 2.
+
+3 - 2 = 1:
+We know that there is one way to get to 1.
+
+3 - 3 = 0:
+There is one additional way to reach the target.
+
+Add the solutions to our mini-problems:
+2 + 1 + 1 = 4; there are four ways to get to 3.
+```
+
+This pattern will continue until the actual target is reached, which in the case of this example, is four. As you can see, the solution requires breaking the problem into small sub-problems that answer bigger problems. ***Dynamic programming*.** 
+
+### Code Implementation
+
+The logic has now been figured out. Now it's a matter of implementing it. Since we'll need to store and access solutions to the small sub-problems. We can use an array of `target + 1` length to store solutions. At every index, `i`, we will store the solution to `target = i`. That is, given a target of four, the array will have a length of five with indices `0, 1, 2, 3, 4`.
+
+```javascript
+function main(nums, target) {
+  const dp = new Array(target + 1).fill(0)
+  for (let i = 1; i <= target; i++){
+    for (let num of nums){
+      if (i - num === 0){
+        // we've found one way to get to i
+        dp[i]++
+      }
+      if (i > num){
+        dp[i] += dp[i - num]
+      }
+    }
+  }
+  return dp[target]
+}
+```
+
+To summarize what was done: 
+
+1. A `dp` array was created.
+2. The function iterates through every value from one and `target`, inclusive of `target`.
+3. For every value in `nums`, the function checs to see if `i - num === 0`. If so, that means  there is at least one way to get to the current target.
+4. Otherwise if `i > num`, or in other words `i - num > 0`, we know from our previous logic walkthrough that we simply add on how many ways there are to get to a target of `i - num`. 
+5. This process will be repeated for all values from one to `target`, inclusive. 
+6. Then all that needs to be returned is the very last value in the `dp` array, which contains the number of ways there are to get to `target`.
+
+## A Fourth Step, Only Sometimes Applicable
+
+Thus far, I've covered three steps that should aid in solving dynamic programming problems: thinking of a top-down approach using recursion, optimizing the recursive solution using memoization, and using the top-down approach to come up with a bottom-up, iterative solution. 
+
+There is a fourth step that can be applicable to certain problems, but is not applicable to the example we went over. The fourth step is to entirely remove the `dp` table/array and substitute it for constant variables. An example that showcases this is our trusty friend, the Fibonacci Sequence.
+
+Following the bottom-up approach utilizing an array to store values, a solution to finding the `nth` number in the Fibonacci sequence would look as follows: 
+
+```javascript
+function fib(n){
+  const dp = new Array(n);
+  dp[0] = 0;
+  dp[1] = 1;
+  for (let i = 2; i < n; i++) {
+    // to find the nth number, we add the previous two values
+    dp[i] = dp[i - 1] + dp[i - 2];
+  }
+}
+```
+
+Notice how at every iteration, only two values need to be evaluated, which are the previous two values. Therefore an array isn't needed and the two values can be stored in variables, which makes the solution use constant O(1) space rather than the O(n) space needed to maintain an array.
+
+```javascript
+function fib(n){
+  let secondPrevious = 0;
+  let previous = 1;
+  for (let i = 2; i < n; i++) {
+    const current = previous + secondPrevious;
+    secondPrevious = previous; 
+    previous = current;
+  }
+  return previous;
+}
+```
+
+## Recap
+
+Hopefully this article simplified dynamic programming for you. The name is scary but the concept is simple. It's all about **sub-problems**. **Sub-problems and more sub-problems!**
+
+In this article, I covered a useful four-step guide to tackling dynamic programming problems. Remember these steps and it will change the way you view dynamic programming. 
+
+1. Think of a top-down approach using recursion. This approach will also allow you to think of base cases for the overall problem. 
+2. Optimize the recursive solution using memoization.
+3. Use the base cases and top-down solution to formulate a bottom-up solution using iteration and a table/array to memoize results to previous subproblems.
+4. If applicable, substitute the table/array for constant variables if only a few, known values are needed. This will improve the space complexity of the function.
+
+## Resources
+
+There is no better way to improve than to practice and practice some more. Below are some *staple* dynamic programming problems found on Leetcode. I suggest doing all of these to get a better grasp of this topic.
+
+1.Easy - [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
+2. Medium - [Word Break](https://leetcode.com/problems/word-break/)
+3. Medium - [House Robber](https://leetcode.com/problems/house-robber/)
+4. Medium - [Unique Paths](https://leetcode.com/problems/unique-paths/)
