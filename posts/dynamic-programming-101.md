@@ -20,6 +20,11 @@ table of contents:
     id: optimizing-top-down-approach-using-memoization
   - display: Bottom-Up Approach
     id: bottom-up-approach
+    subheadings:
+      - subheading: Working Out the Logic
+        id: working-out-the-logic
+      - subheading: Code Implementation
+        id: code-implementation
   - display: Replacing Tables With Constant Variables
     id: replacing-tables-with-constant-variables
   - display: Recap
@@ -49,7 +54,7 @@ To better understand, I'll be covering possible solutions to [Leetcode #377: Com
 
 When it comes to dynamic programming, there are two ways to go about tackling a problem: **top-down** and **bottom-up**. For many problems, like this example, it is easier to first take a top-down approach and then optimize the solution using the bottom-up method.
 
-### Top-Down Approach
+## Top-Down Approach
 
 The top-down approach is often the more intuitive of the two. Coding aside, how would you solve this problem? Personally, I would take the target, four, and start subtracting from it the possible values within `nums`. That is, `4 - 1 = 3`. Now that I'm at `3`, `3 - 1 = 2`, and then `2 - 2 = 0`. I just found one possible combination: `1, 2, 1`. Remember, the goal is to find all possible combinations. Therefore using that logic, I'd repeat for various values found within `nums`.  That line of thinking where we are working from some end result backwards is considered top-down. 
 
@@ -145,7 +150,7 @@ With the added memoization, our diagram will look much more manageable.
 
 As you can see, the middle and right sub-trees no longer have to be executed to the same extent they previously were because the solutions to those sub-trees have already been solved and effectively memoized. The solution is now much more acceptable and doesn't require an abundance of time and space to run. 
 
-### Further Optimizing The Solution Using a Bottom-Up Approach
+## Further Optimizing The Solution Using a Bottom-Up Approach
 
 Thus far, we've gone over a top-down recursive solution and using memoization to optimize that solution. Recursion is often a great starting point to solve solutions, but will always run the issue of being a worse optimized solution to a problem due to the nature of recursion and its requirement for the call stack to hold function calls in memory. 
 
@@ -158,7 +163,7 @@ That being said, recursive functions can be written iteratively, and iterative s
 
 So given that the top-down approach required working from the `target` down to zero, what if we built the bottom-up solution from zero to `target`? 
 
-### Working Out The Logic
+### Working Out The Logic <a id="working-out-the-logic"></a>
 
 Answer this question: how many ways are there to get a `target` of one given the previous example where `nums = [1,2,3]`? The answer would be that there is one way. We can only get to one by using the value one. 
 
@@ -201,7 +206,7 @@ Add the solutions to our mini-problems:
 
 This pattern will continue until the actual target is reached, which in the case of this example, is four. As you can see, the solution requires breaking the problem into small sub-problems that answer bigger problems. ***Dynamic programming*.** 
 
-### Code Implementation
+### Code Implementation <a id="code-implementation"></a>
 
 The logic has now been figured out. Now it's a matter of implementing it. Since we'll need to store and access solutions to the sub-problems. We can use an array of `target + 1` length to store solutions. At every index, `i`, we will store the solution to `target = i`. That is, given a target of four, the array will have a length of five with indices `0, 1, 2, 3, 4`.
 
