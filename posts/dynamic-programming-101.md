@@ -7,6 +7,25 @@ description: Dynamic programming is a mouthful but in practice, it's not as
   4-step guide to solving complex problems.
 date: 2021-03-17T20:19:13.002Z
 thumbnail: /images/uploads/dp.png
+table of contents:
+  - display: What is Dynamic Programming?
+    id: what-is-dynamic-programming
+  - display: Identifying Dynamic Programming Questions
+    id: identifying-dynamic-programming-questions
+  - display: Approaching DP Problems
+    id: approaching-dp-problems
+  - display: Top-Down Approach
+    id: top-down-approach
+  - display: Optimizing Top-Down Approach Using Memoization
+    id: optimizing-top-down-approach-using-memoization
+  - display: Bottom-Up Approach
+    id: bottom-up-approach
+  - display: Replacing Tables With Constant Variables
+    id: replacing-tables-with-constant-variables
+  - display: Recap
+    id: recap
+  - display: Resources
+    id: resources
 ---
 Dynamic programming can be a pretty scary topic for new developers looking to improve their algorithmic skills. Just the words "dynamic programming" used to turn me off from a problem and would send me in a spiral of self doubt. 
 
