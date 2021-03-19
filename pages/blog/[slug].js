@@ -369,7 +369,7 @@ export default function Post({ htmlString, data }) {
           <TableOfContents>
             <H2 color="text">Content</H2>
             <ContentList>
-              {data.toc.map((link, i) => (
+              {data['table of contents'].map((link, i) => (
                 <li key={i}>
                   <StyledAnchor to={`${link.id}`} smooth="true">
                     {link.display}
