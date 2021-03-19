@@ -7,6 +7,13 @@ description: Learn how to use binary search to optimize your algorithm for
   Leetcode and Codesignal.
 date: 2021-03-05T17:56:21.520Z
 thumbnail: /images/uploads/leetcode-1011.png
+table of contents:
+  - display: The Problem
+    id: the-problem
+  - display: Tackling the Problem
+    id: tackling-the-problem
+  - display: Time and Space Complexity
+    id: time-and-space-complexity
 ---
 Interview prepping for software engineering roles can be pretty daunting. Platforms, such as [Leetcode](https://leetcode.com) and [codewars](https://www.codewars.com/), offer excellent means of practicing technical interview questions.  Sometimes the discussion boards on those sites can be great, and other times maybe a more thorough dive into problems is needed. That is why I decided to start creating walkthroughs of interesting algorithmic challenges I come across, and hopefully help others along the way. 
 
