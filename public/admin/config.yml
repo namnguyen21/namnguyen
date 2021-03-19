@@ -1,20 +1,34 @@
 backend:
   name: git-gateway
-  branch: master 
+  branch: master
 publish_mode: editorial_workflow
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
-collections: 
+collections:
   - name: "blog"
     label: "Blog"
-    folder: "posts" 
-    create: true 
+    folder: "posts"
+    create: true
     slug: "{{slug}}"
     fields: # The fields for each document, usually in front matter
-      - {label: “Save as Draft”, name: “draft”, required: false, widget: “boolean”, default: true}
-      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {
+          label: “Save as Draft”,
+          name: “draft”,
+          required: false,
+          widget: “boolean”,
+          default: true,
+        }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "thumbnail", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - {
+          label: "Table of Contents",
+          name: "table of contents",
+          widget: "list",
+          fields: 
+            - {label: "Display", name: "display", widget: 'string'}
+            - {label : "ID", name: "id", widget: "string"}
+        }
