@@ -423,7 +423,7 @@ export const getStaticProps = async (context) => {
   const htmlString = marked(parsedMarkdown.content);
 
   // make date json
-  parsedMarkdown.data.date = parsedMarkdown.data.date.toString();c
+  parsedMarkdown.data.date = parsedMarkdown.data.date.toString();
   return {
     props: {
       htmlString,
