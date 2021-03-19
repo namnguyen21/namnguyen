@@ -25,8 +25,8 @@ const Header = styled.div`
   h1 {
     font-size: 40px;
     margin-bottom: 10px;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-weight: 800;
+    letter-spacing: 3px;
     font-family: ${(props) => props.theme.font.heading};
   }
 

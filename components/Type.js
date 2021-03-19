@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const TypeP = styled.p`
   font-size: ${(props) => (props.size ? props.size : "20px")};
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
   color: ${(props) => props.theme.colors.heading};
   font-family: ${(props) => props.theme.font.body};
@@ -40,8 +40,8 @@ export const H1 = ({ children, className, color }) => {
 
 const TypeH2 = styled.h2`
   font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 2px;
+  font-weight: 800;
+  letter-spacing: 3px;
   color: ${(props) =>
     props.color === "text"
       ? props.theme.colors.text

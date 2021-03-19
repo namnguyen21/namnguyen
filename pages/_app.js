@@ -5,13 +5,13 @@ const THEME = {
   colors: {
     paper: "#0b1221",
     link: "#e8e046",
-    text: "#ffffff",
+    text: "#e8e8e8",
     heading: "#FFFFFF",
     textSecondary: "#86a1b5",
   },
   font: {
-    body: "'Open Sans', sans-serif",
-    heading: "'Ubuntu', sans-serif",
+    body: "'Work Sans', sans-serif",
+    heading:"'Montserrat', sans-serif",
   },
 };
 
