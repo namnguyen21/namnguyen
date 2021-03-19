@@ -24,11 +24,9 @@ collections:
       - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Featured Image", name: "thumbnail", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - {
-          label: "Table of Contents",
-          name: "table of contents",
-          widget: "list",
-          fields: 
-            - {label: "Display", name: "display", widget: 'string'}
-            - {label : "ID", name: "id", widget: "string"}
-        }
+      - label: "Table of Contents"
+        name: "table of contents"
+        widget: "list"
+        fields:
+          - { label: "Display", name: "display", widget: "string" }
+          - { label: "ID", name: "id", widget: "string" }
