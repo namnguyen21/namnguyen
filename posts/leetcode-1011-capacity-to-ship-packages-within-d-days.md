@@ -19,7 +19,7 @@ Interview prepping for software engineering roles can be pretty daunting. Platfo
 
 In this article, I'll go over one of the most interesting problems I've come across so far: [Leetcode #1011](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/). Let's get right into it! 
 
-## The Problem
+## The Problem <a id="the-problem"></a>
 
 ![Leetcode #1011](/images/uploads/screen-shot-2021-03-05-at-10.42.33-am.png "Leetcode #1011")
 
@@ -40,7 +40,7 @@ We can split the array into 3 segments:
 
 To further elaborate, if we were to try another possible combination of splitting the array into 3 subarrays such as `[3, 2, 2], [4, 1], and [4]`, the capacity needed would be 7, which is greater than the previous capacity needed. Remember, the goal is to find the **minimum** capacity needed. 
 
-## Tackling the Problem
+## Tackling the Problem <a id="tackling-the-problem"></a>
 
 It can be a bit tricky getting started on this problem. The first time I encountered this style of problem, I was absolutely stumped. What helped me get the gears rolling was thinking of the worst and the best case scenarios.
 
@@ -143,7 +143,7 @@ Let's break that down.
 5. Therefore, instead of setting `max = currentCapacity - 1` like you would a normal binary search, we set `max = currentCapacity`, because there is the possibility that the currentCapacity is the solution to the problem. 
 6. Following this logic, if and when `currentCapacity` is the right answer and the minimum capacity needed, the `min` pointer will continue increasing until the loop breaks and we simply return the `max` value. 
 
-## Time and Space Complexity
+## Time and Space Complexity <a id="time-and-space-complexity"></a>
 
 To determine the time complexity of this solution, a breakdown of the function(s) is needed. 
 
