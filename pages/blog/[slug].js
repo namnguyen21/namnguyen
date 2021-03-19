@@ -6,9 +6,11 @@ import marked from "marked";
 import styled from "styled-components";
 import Prism from "prismjs";
 import { useEffect } from "react";
+import { Link } from "react-scroll";
 
 import Layout from "../../components/Layout";
 import Section from "../../components/Section";
+import { H2 } from "../../components/Type";
 
 const StyledSection = styled(Section)`
   width: 600px;
@@ -34,6 +36,33 @@ const Header = styled.div`
   margin-bottom: 50px;
 `;
 
+const TableOfContents = styled.section`
+  width: 100%;
+  margin: 0 auto 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 8px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 20%),
+    inset 0 0 2px rgb(255 255 255 / 50%);
+  margin-top: 30px;
+  padding: 20px 50px;
+`;
+
+const ContentList = styled.ol`
+  margin-top: 10px;
+  width: 100%;
+  list-style-position: inside;
+  li {
+    color: ${(props) => props.theme.colors.text};
+    cursor: pointer;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+`;
+
+const StyledAnchor = styled(Link)`
+  color: ${(props) => props.theme.colors.link};
+`;
+
 const Content = styled.article`
   color: ${(props) => props.theme.colors.text};
 
@@ -49,12 +78,12 @@ const Content = styled.article`
     font-family: ${(props) => props.theme.font.heading};
   }
   a {
-    color: ${props => props.theme.colors.link};
+    color: ${(props) => props.theme.colors.link};
     text-decoration: underline;
     cursor: pointer;
 
     &:hover {
-      color: ${props => props.theme.colors.textSecondary};
+      color: ${(props) => props.theme.colors.textSecondary};
     }
   }
 
@@ -92,7 +121,8 @@ const Content = styled.article`
     > *:not(:last-child) {
       margin-bottom: 10px;
     }
-    p, li {
+    p,
+    li {
       font-size: 18px;
       font-weight: 400;
       line-height: 2;
@@ -328,6 +358,18 @@ export default function Post({ htmlString, data }) {
             <h1>{data.title}</h1>
             <p>{parseDate(data.date)}</p>
           </Header>
+          <TableOfContents>
+            <H2 color="text">Content</H2>
+            <ContentList>
+              {data["table of contents"].map((link) => (
+                <li>
+                  <StyledAnchor to={`${link.id}`} smooth="true">
+                    {link.display}
+                  </StyledAnchor>
+                </li>
+              ))}
+            </ContentList>
+          </TableOfContents>
           <Content dangerouslySetInnerHTML={{ __html: htmlString }}></Content>
         </StyledSection>
       </Layout>
@@ -363,7 +405,7 @@ export const getStaticProps = async (context) => {
 
   // make date json
   parsedMarkdown.data.date = parsedMarkdown.data.date.toString();
-
+  console.log(parsedMarkdown.data["table of contents"]);
   return {
     props: {
       htmlString,

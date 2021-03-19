@@ -5,7 +5,7 @@ const THEME = {
   colors: {
     paper: "#0b1221",
     link: "#e8e046",
-    text: "#f7fffe",
+    text: "#ffffff",
     heading: "#FFFFFF",
     textSecondary: "#86a1b5",
   },

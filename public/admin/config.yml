@@ -30,3 +30,9 @@ collections:
         fields:
           - { label: "Display", name: "display", widget: "string" }
           - { label: "ID", name: "id", widget: "string" }
+          - label: "Subheadings"
+            name: "subheadings"
+            widget: "list"
+            fields:
+              - { label: "Subheading", name: "subheading", widget: "string" }
+              - { label: "ID", name: "id", widget: "string" }
