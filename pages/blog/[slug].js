@@ -59,8 +59,16 @@ const ContentList = styled.ol`
   }
 `;
 
+const SubList = styled.ul`
+  margin: 10px 0 0 20px;
+`;
+
 const StyledAnchor = styled(Link)`
   color: ${(props) => props.theme.colors.link};
+`;
+
+const AlternateAnchor = styled(Link)`
+  color: ${(props) => props.theme.colors.textSecondary};
 `;
 
 const Content = styled.article`
@@ -361,10 +369,21 @@ export default function Post({ htmlString, data }) {
           <TableOfContents>
             <H2 color="text">Content</H2>
             <ContentList>
-              {data["table of contents"].map((link) => (
-                <li>
+              {data.toc.map((link, i) => (
+                <li key={i}>
                   <StyledAnchor to={`${link.id}`} smooth="true">
                     {link.display}
+                    {link.subheadings ? (
+                      <SubList>
+                        {link.subheadings.map((sub, idx) => (
+                          <li key={idx}>
+                            <AlternateAnchor to={sub.id}>
+                              {sub.subheading}
+                            </AlternateAnchor>
+                          </li>
+                        ))}
+                      </SubList>
+                    ) : null}
                   </StyledAnchor>
                 </li>
               ))}
@@ -404,8 +423,7 @@ export const getStaticProps = async (context) => {
   const htmlString = marked(parsedMarkdown.content);
 
   // make date json
-  parsedMarkdown.data.date = parsedMarkdown.data.date.toString();
-  console.log(parsedMarkdown.data["table of contents"]);
+  parsedMarkdown.data.date = parsedMarkdown.data.date.toString();c
   return {
     props: {
       htmlString,
