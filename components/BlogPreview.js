@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import LazyLoad from "react-lazyload";
 
-import { P, H2 } from "./Type";
+import { H2 } from "./Type";
 
 const Card = styled.article`
   width: 100%;
@@ -34,7 +34,7 @@ const Content = styled.div`
   p {
     line-height: 1.5;
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.5px;
 
     code {
@@ -83,12 +83,7 @@ const Date = styled.p`
   color: ${(props) => props.theme.colors.textSecondary};
 `;
 
-export default function BlogPreview({
-  img,
-  title,
-  date,
-  content,
-}) {
+export default function BlogPreview({ img, title, date, content }) {
   function parseDate(dateStr) {
     dateStr = dateStr.split(" ").splice(1, 3).join(" ");
 

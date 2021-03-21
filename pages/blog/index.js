@@ -1,8 +1,6 @@
 import fs from "fs";
 import Link from "next/link";
 import styled from "styled-components";
-import lottie from "lottie-web";
-import { useEffect, useRef } from "react";
 import path from "path";
 import matter from "gray-matter";
 import marked from "marked";
@@ -52,19 +50,7 @@ const Error = styled.p`
 `;
 
 export default function index({ slugs }) {
-  const container = useRef(null);
 
-  useEffect(() => {
-    if (slugs.length === 0) {
-      lottie.loadAnimation({
-        container: container.current,
-        renderer: "svg",
-        loop: true,
-        autoplay: true,
-        animationData: require("../../components/animations/robot.json"),
-      });
-    }
-  }, []);
 
   return (
     <>
@@ -83,28 +69,18 @@ export default function index({ slugs }) {
       </Head>
       <Layout>
         <StyledSection>
-          {slugs.length > 0 ? (
-            slugs.map(({ content, data }, i) => (
-              <Link key={i} href={`/blog/${data.route}`} passHref>
-                <A className="myLink">
-                  <BlogPreview
-                    title={data.title}
-                    img={data.thumbnail}
-                    date={data.date}
-                    content={content}
-                  />
-                </A>
-              </Link>
-            ))
-          ) : (
-            <DisplayError>
-              <AnimationContainer ref={container}></AnimationContainer>
-              <Error>
-                Looks like you're a little early! I'm currently working on
-                content right now, so please come back soon!
-              </Error>
-            </DisplayError>
-          )}
+          {slugs.map(({ content, data }, i) => (
+            <Link key={i} href={`/blog/${data.route}`} passHref>
+              <A className="myLink">
+                <BlogPreview
+                  title={data.title}
+                  img={data.thumbnail}
+                  date={data.date}
+                  content={content}
+                />
+              </A>
+            </Link>
+          ))}
         </StyledSection>
       </Layout>
     </>
@@ -137,7 +113,6 @@ export const getStaticProps = async () => {
   }
 
   content.sort((a, b) => {
-
     return new Date(b.data.date) - new Date(a.data.date);
   });
 

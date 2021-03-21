@@ -13,17 +13,17 @@ const Header = styled.nav`
   left: 0;
   right: 0;
   z-index: 9999999;
-  background-color: ${(props) => props.theme.colors.paper};
+  background: ${(props) => (props.isAtTop ? "transparent" : "#0b1322")};
   border-bottom: ${(props) =>
-    props.isAtTop
-      ? `solid 1px ${props.theme.colors.paper}`
-      : "solid 1px #1e232e"};
+    props.isAtTop ? `solid 1px transparent` : "solid 1px #1e232e"};
 
   transition: all 0.3s;
   transform: ${(props) =>
     props.show || props.isAtTop ? "translateY(0)" : "translateY(-100px)"};
 
-  font-family: ${(props) => props.theme.font.body};
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const Logo = styled.h1`
@@ -36,6 +36,7 @@ const Container = styled.div`
   width: 1000px;
   margin: auto;
   justify-content: space-between;
+  z-index: 9999999;
   @media (max-width: 1000px) {
     width: 100%;
     padding: 0 20px;
@@ -84,6 +85,9 @@ export default function Nav({ isAtTop, show }) {
           </a>
         </Link>
         <div style={{ display: "flex" }}>
+          <NavLink href="/files/nam-nguyen-resume.pdf" download>
+            Resume
+          </NavLink>
           <Link href="/blog">
             <NavLink>Blog</NavLink>
           </Link>

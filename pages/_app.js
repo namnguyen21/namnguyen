@@ -3,15 +3,11 @@ import { ThemeProvider } from "styled-components";
 
 const THEME = {
   colors: {
-    paper: "#0b1221",
+    paper: "rgba(11, 19, 34, 0.98)",
     link: "#e8e046",
     text: "#e8e8e8",
     heading: "#FFFFFF",
     textSecondary: "#86a1b5",
-  },
-  font: {
-    body: "'Work Sans', sans-serif",
-    heading:"'Montserrat', sans-serif",
   },
 };
 

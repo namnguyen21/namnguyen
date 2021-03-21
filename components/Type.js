@@ -5,7 +5,6 @@ const TypeP = styled.p`
   font-weight: 400;
   line-height: 1.4;
   color: ${(props) => props.theme.colors.heading};
-  font-family: ${(props) => props.theme.font.body};
   letter-spacing: 0.5px;
 `;
 
@@ -27,7 +26,6 @@ const TypeH1 = styled.h1`
       : props.color === "link"
       ? props.theme.colors.link
       : props.theme.colors.textSecondary};
-  font-family: ${(props) => props.theme.font.heading};
 `;
 
 export const H1 = ({ children, className, color }) => {
@@ -48,7 +46,6 @@ const TypeH2 = styled.h2`
       : props.color === "link"
       ? props.theme.colors.link
       : props.theme.colors.textSecondary};
-  font-family: ${(props) => props.theme.font.heading};
 `;
 
 export const H2 = ({ children, className, color, style }) => {
@@ -69,7 +66,6 @@ const TypeH3 = styled.h3`
       ? props.theme.colors.link
       : props.theme.colors.textSecondary};
   letter-spacing: 2px;
-  font-family: ${(props) => props.theme.font.heading};
 `;
 
 export const H3 = ({ children, className, color, style }) => {

@@ -17,7 +17,6 @@ const Intro = styled.h1`
   line-height: 1;
   width: 100%;
   text-align: center;
-  font-family: ${(props) => props.theme.font.body};
   @media (max-width: 800px) {
     font-size: 60px;
   }
@@ -26,7 +25,7 @@ const Intro = styled.h1`
 const HeroSection = styled(Section)`
   @media (min-width: 800px) {
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
   }
 `;
 
@@ -118,7 +117,6 @@ const ALink = styled.a`
     color: ${(props) => props.theme.colors.link};
   }
   text-align: right;
-  font-family: ${(props) => props.theme.font.body};
 `;
 
 export default function Home({ latestProj, latestBlog }) {
@@ -151,7 +149,7 @@ export default function Home({ latestProj, latestBlog }) {
                       <H3 style={{ marginBottom: "10px" }} color="link">
                         {latestProj.title}
                       </H3>
-                      <P size="16px">{latestProj.description}</P>
+                      <P size="18px">{latestProj.description}</P>
                     </div>
                   </Card>
                 </a>
@@ -171,7 +169,7 @@ export default function Home({ latestProj, latestBlog }) {
                         <H3 style={{ marginBottom: "10px" }} color="link">
                           {latestBlog.title}
                         </H3>
-                        <P size="16px">{latestBlog.description}</P>
+                        <P size="18px">{latestBlog.description}</P>
                       </div>
                     </Card>
                   </a>

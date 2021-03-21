@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import Nav from "./Nav";
+import MobileNav from "./MobileNav";
 import Footer from "./Footer";
 
 const Container = styled.div`
@@ -40,6 +41,7 @@ export default function Layout({ children, className }) {
       </Head>
       <Container className={className}>
         <Nav show={show} isAtTop={isAtTop} />
+        <MobileNav show={show} isAtTop={isAtTop} />
         {children}
         <Footer />
       </Container>

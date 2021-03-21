@@ -27,7 +27,6 @@ const Header = styled.div`
     margin-bottom: 10px;
     font-weight: 800;
     letter-spacing: 3px;
-    font-family: ${(props) => props.theme.font.heading};
   }
 
   p {
@@ -83,7 +82,6 @@ const Content = styled.article`
   h3 {
     color: ${(props) => props.theme.colors.heading};
     font-weight: 900;
-    font-family: ${(props) => props.theme.font.heading};
   }
   a {
     color: ${(props) => props.theme.colors.link};
@@ -109,7 +107,7 @@ const Content = styled.article`
 
   p {
     line-height: 2;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
     letter-spacing: 0.5px;
     color: ${(props) => props.theme.colors.text};
@@ -369,7 +367,7 @@ export default function Post({ htmlString, data }) {
           <TableOfContents>
             <H2 color="text">Content</H2>
             <ContentList>
-              {data['table of contents'].map((link, i) => (
+              {data["table of contents"].map((link, i) => (
                 <li key={i}>
                   <StyledAnchor to={`${link.id}`} smooth="true">
                     {link.display}
