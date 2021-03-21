@@ -13,7 +13,7 @@ const Header = styled.nav`
   left: 0;
   right: 0;
   z-index: 9999999;
-  background: ${(props) => (props.isAtTop ? "transparent" : "#0b1322")};
+  background: ${(props) => (props.isAtTop ? "transparent" : "#090f1b")};
   border-bottom: ${(props) =>
     props.isAtTop ? `solid 1px transparent` : "solid 1px #1e232e"};
 

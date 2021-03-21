@@ -3,8 +3,8 @@ import { ThemeProvider } from "styled-components";
 
 const THEME = {
   colors: {
-    paper: "rgba(11, 19, 34, 0.98)",
-    link: "#e8e046",
+    paper: "rgba(9, 15, 27, 0.95)",
+    link: "#FF9A8A",
     text: "#e8e8e8",
     heading: "#FFFFFF",
     textSecondary: "#86a1b5",

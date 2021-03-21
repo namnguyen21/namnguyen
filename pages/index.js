@@ -92,19 +92,21 @@ const Img = styled.img`
 `;
 
 const Card = styled(Flex)`
-  background-color: #111a2e;
-  padding: 10px;
-  border-radius: 10px;
+  /* background-color: #111a2e; */
+  padding: 10px 0 20px 20px;
   align-items: center;
   max-width: 450px;
   margin-bottom: 15px;
-  border: solid 1px ${(props) => props.theme.colors.paper};
   @media (max-width: 800px) {
     width: 100%;
   }
-  transition: all 0.2s;
+  border-bottom: solid 1px ${props => props.theme.colors.link};
+  border-left: solid 1px ${props => props.theme.colors.link};
+
   &:hover {
-    border: solid 1px ${(props) => props.theme.colors.link};
+    border-left: solid 1px ${props => props.theme.colors.textSecondary};
+    border-bottom: solid 1px ${props => props.theme.colors.textSecondary};
+
   }
 `;
 
@@ -199,7 +201,7 @@ export const getStaticProps = async () => {
     const parsed = matter(file);
 
     parsed.data.date = parsed.data.date.toString();
-    parsed.data.route = slug.replace('.md', '')
+    parsed.data.route = slug.replace(".md", "");
     blogPosts.push(parsed.data);
   }
 

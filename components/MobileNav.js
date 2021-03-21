@@ -5,7 +5,7 @@ import Link from "next/link";
 const Nav = styled.nav`
   width: 100%;
   background: ${(props) =>
-    !props.isAtTop || props.open ? "#0b1322" : "transparent"};
+    !props.isAtTop || props.open ? "#090f1b" : "transparent"};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,10 +17,7 @@ const Nav = styled.nav`
     display: none;
   }
   transition: all 0.2s;
-  border-bottom: ${(props) =>
-    props.isAtTop
-      ? `solid 1px ${props.theme.colors.paper}`
-      : "solid 1px #1e232e"};
+
   transform: ${(props) =>
     props.show || props.isAtTop ? "translateY(0)" : "translateY(-100%)"};
 `;
@@ -28,7 +25,7 @@ const Nav = styled.nav`
 const Overlay = styled.div`
   width: 100%;
   background: ${(props) =>
-    !props.isAtTop || props.open ? "#0b1322" : "transparent"};
+    !props.isAtTop || props.open ? "#090f1b" : "transparent"};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,7 +35,7 @@ const Overlay = styled.div`
 
 const Logo = styled.h1`
   color: ${(props) => props.theme.colors.text};
-  font-size: 30;
+  font-size: 30px;
 `;
 
 const Hamburger = styled.button`
@@ -86,7 +83,7 @@ const Menu = styled.div`
   top: 100%;
   left: 0;
   border-bottom: solid 2px #1e232e;
-  background-color: #0b1322;
+  background-color: #090f1b;
   transform: ${(props) => (props.open ? "translateY(0)" : "translateY(-200%)")};
   transition: transform 0.2s;
   > *:not(:last-child) {
@@ -116,7 +113,7 @@ export default function MobileNav({ show, isAtTop }) {
       <Overlay open={open} isAtTop={isAtTop}>
         <Link href="/">
           <Logo>
-            <A>n</A>
+            <A style={{ fontSize: "inherit" }}>n</A>
           </Logo>
         </Link>
         <Hamburger onClick={flipOpen}>
