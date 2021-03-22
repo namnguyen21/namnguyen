@@ -32,13 +32,13 @@ table of contents:
   - display: Resources
     id: resources
 ---
-Dynamic programming can be a pretty scary topic for new developers looking to improve their algorithmic skills. Just the words "dynamic programming" used to turn me off from a problem and would send me in a spiral of self doubt. 
+Dynamic programming can be a pretty scary topic for new developers looking to improve their algorithmic skills. Just the words alone used to turn me off from a problem and would send me in a spiral of self doubt. 
 
-Through time and practice, I was able to gradually improve at dynamic programming by being able to recognize patterns and approaching problems through different angles. This article will go over some of the keys to approaching dynamic programming problems that I've picked up through my studies. First, we need to understand what dynamic programming even is. 
+Through time and practice, I was able to gradually improve at the concept by being able to recognize patterns and approaching problems through different angles. This article will go over some of the keys to approaching dynamic programming problems that I've picked up through my studies. First, we need to understand what dynamic programming even is. 
 
 ## What is Dynamic Programming?
 
-As complex as the name might make it seem, the concept itself is pretty simple and describes an approach to problem solving. At its core, dynamic programming is the methodology of breaking a large problem into smaller sub-problems and using the solutions to those smaller sub-problems to solve the larger one. The most classic example of dynamic programming at work is the Fibonacci sequence. 
+As complex as the name might make it seem, the concept itself is pretty simple and describes an approach to problem solving. At its core, dynamic programming is the technique of breaking a large problem into smaller sub-problems and using the solutions to those smaller sub-problems to solve the larger one. The most classic example of dynamic programming at work is the Fibonacci sequence. 
 
 Speaking of the Fibonacci sequence, how can we determine what the 4th value in the Fibonacci sequence is? If you're familiar with the sequence itself, all you have to really know is the first two values of the sequence: `0, 1`. From there on, the `nth` value is simply the sum of the two previous values. So to find the 4th value, we must find the third value, which is `0 + 1 = 1`. The fourth value is then `1 + 1 = 2`. By breaking down the problem into more manageable sub problems and working from the very beginning, we are able to eventually reach the solution of our main problem.
 
@@ -56,7 +56,7 @@ When it comes to dynamic programming, there are two ways to go about tackling a 
 
 ## Top-Down Approach
 
-The top-down approach is often the more intuitive of the two. Coding aside, how would you solve this problem? Personally, I would take the target, four, and start subtracting from it the possible values within `nums`. That is, `4 - 1 = 3`. Now that I'm at `3`, `3 - 1 = 2`, and then `2 - 2 = 0`. I just found one possible combination: `1, 2, 1`. Remember, the goal is to find all possible combinations. Therefore using that logic, I'd repeat for various values found within `nums`.  That line of thinking where we are working from some end result backwards is considered top-down. 
+The top-down approach is often the more intuitive of the two. Coding aside, how would you solve this problem? Personally, I would take the target, four, and start subtracting from it the possible values within `nums`. That is, `4 - 1 = 3`. Now that I'm at `3`, `3 - 1 = 2`, `2 - 1 = 1`, and then finally `1 - 1 = 0`. I just found one possible combination: `1, 1, 1, 1`. Remember, the goal is to find all possible combinations so therefore following the same logic, I'd repeat for various values found within `nums`.  That line of thinking where we are working from some end result backwards is considered top-down. 
 
 Before trying to implement that logic into code, it might be best to look at a diagram to see what we're trying to do. 
 
@@ -83,7 +83,7 @@ function findWaysToSum(nums, target){
   return count
 }
 
-function main(nums, target) {
+function findWaysToSum(nums, target) {
   return findWaysToSum(nums, target)
 }
 ```
@@ -208,7 +208,7 @@ This pattern will continue until the actual target is reached, which in the case
 
 ### Code Implementation <a id="code-implementation"></a>
 
-The logic has now been figured out. Now it's a matter of implementing it. Since we'll need to store and access solutions to the sub-problems. We can use an array of `target + 1` length to store solutions. At every index, `i`, we will store the solution to `target = i`. That is, given a target of four, the array will have a length of five with indices `0, 1, 2, 3, 4`.
+The logic has now been figured out and we now know that at any given t, `n`, we're presented with the option of subtracting away any of the values within `nums`. From there, it is the sum of all the ways to get to the new, subtracted values that gives a solution of how many ways there are to get a target of `n`. Now it's a matter of implementing it. Since we'll need to store and access solutions to the sub-problems. We can use an array of `target + 1` length to store solutions. At every index, `i`, we will store the solution to `target = i`. That is, given a target of four, the array will have a length of five with indices `0, 1, 2, 3, 4.`
 
 ```javascript
 function main(nums, target) {
@@ -258,7 +258,7 @@ function fib(n){
 }
 ```
 
-Notice how at every iteration, only two values need to be evaluated, which are the previous two values. Therefore an array isn't needed and the two values can be stored in variables, which makes the solution use constant O(1) space rather than the O(n) space needed to maintain an array.
+Notice how at every iteration, only two values need to be evaluated, which are the previous two values. Therefore an array isn't needed and the two values can be stored in variables, which makes the solution use constant O(1) space rather than the O(n) space needed to maintain an array. 
 
 ```javascript
 function fib(n){
