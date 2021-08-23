@@ -72,7 +72,7 @@ const StyledImage = styled.img`
   height: calc(400px * 3 / 4);
   @media screen and (max-width: 800px) {
     width: 100%;
-    
+
     margin-bottom: 50px;
   }
 `;
@@ -132,19 +132,21 @@ export default function ProjectCard({
 
         <P>{description}</P>
         <ButtonGroup>
-          <A href={deployed && deployed} alt="Visit Site" target="_blank">
-            <FiExternalLink />
-          </A>
-          <A
-            href={github && github}
-            alt="Visit Github Repository"
-            target="_blank"
-          >
-            <FiGithub />
-          </A>
-          <A href={youtube && youtube} alt="Visit Youtube Demo" target="_blank">
-            <FiYoutube />
-          </A>
+          {deployed && (
+            <A href={deployed} alt="Visit Site" target="_blank">
+              <FiExternalLink />
+            </A>
+          )}
+          {github && (
+            <A href={github} alt="Visit Github Repository" target="_blank">
+              <FiGithub />
+            </A>
+          )}
+          {youtube && (
+            <A href={youtube} alt="Visit Youtube Demo" target="_blank">
+              <FiYoutube />
+            </A>
+          )}
         </ButtonGroup>
       </DescriptionContainer>
     </Card>

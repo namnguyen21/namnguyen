@@ -1,5 +1,17 @@
 [
   {
+    "title": "Code Peer",
+    "description": "A peer-to-peer collaborative code editor with voice, video, and text chat funcationality.",
+    "image": "./images/code-peer.png",
+    "tools": [
+      "React",
+      "WebRTC",
+      "Redis"
+    ],
+    "deployed": "https://codepeer.dev",
+    "github": "https://github.com/namnguyen21/code-peer"
+  },
+  {
     "title": "Snap Menu",
     "description": "Restaurants can upload their menus through a user portal and obtain a QR code for customers to view their new, digitial menus.",
     "image": "./images/snapmenu.png",
@@ -26,19 +38,5 @@
     "deployed": "https://projectify-test.herokuapp.com/",
     "github": "https://github.com/namnguyen21/projectify-updated",
     "youtube": "https://www.youtube.com/watch?v=DsHuuDnm4Z4"
-  },
-  {
-    "title": "Daily Dose",
-    "description": "A content aggregator for news and media sources. Utilizes web scraping to gather articles and posts.",
-    "image": "./images/dailydose.png",
-    "tools": [
-      "React",
-      "Express",
-      "MongoDB",
-      "Python"
-    ],
-    "deployed": "https://pacific-temple-25329.herokuapp.com/",
-    "github": "https://github.com/namnguyen21/daily-dose",
-    "youtube": "https://www.youtube.com/watch?v=AYH8XHADRI4"
   }
 ]
